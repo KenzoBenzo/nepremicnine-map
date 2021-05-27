@@ -1,0 +1,42 @@
+enum PropertyType {
+  house
+  land
+  appartment
+}
+
+enum Transaction {
+  BUY
+  RENT
+}
+
+type Address {
+  street: String
+  city: String!
+  postalCode: Int
+}
+
+type Location {
+  neighborhood: String!
+  longitude: Float!
+  latitude: Float!
+  address: Address! @relation
+}
+
+type Property {
+  title: String! @unique
+  type: PropertyType!
+  transaction: Transaction!
+  image: String
+  location: Location! @relation
+  totalPrice: Float!
+  pricePerMeterSq: Float
+  plotSize: Float
+  floorSize: Float
+  bedRooms: Int
+  bathRooms: Int
+}
+
+type Query {
+  properties: [Property!]
+  allOfPropertyType(type: PropertyType = house): [Property!]
+}
