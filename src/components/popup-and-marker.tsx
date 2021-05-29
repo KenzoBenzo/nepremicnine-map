@@ -20,7 +20,8 @@ export const MarkerAndPopup = ({ latitude, longitude, image, title }: PopupType)
         <DrawingPinIcon
           boxSize={6}
           color={markerColor}
-          onClick={() => togglePopup(!showPopup)}
+          // onClick={() => togglePopup(!showPopup)}
+          onMouseOver={() => togglePopup(!showPopup)}
           cursor="pointer"
         />
       </Marker>
