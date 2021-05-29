@@ -11,7 +11,7 @@ function Map({ children }: MapProps) {
 	const [viewport, setViewport] = useState({
 		longitude: 14.48298366613581,
 		latitude: 46.05818721172,
-		zoom: 11,
+		zoom: 10,
 	});
 
 	return (
