@@ -3,6 +3,7 @@ import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import { Box, Text, Image, useColorMode } from "@chakra-ui/react";
 import { DrawingPinIcon } from "./icons";
 
+
 function Map() {
 	const { colorMode } = useColorMode();
 	const [viewport, setViewport] = useState({
@@ -23,7 +24,7 @@ function Map() {
 					? "mapbox://styles/mapbox/streets-v11"
 					: "mapbox://styles/mapbox/dark-v10"
 			}
-			mapboxApiAccessToken="pk.eyJ1Ijoia2Vuem9iZW56byIsImEiOiJja3AxODJzOXIxYTFsMnhtY2xoMG14b2x4In0.bupRcs8aD0hGKytVHcbKjQ"
+			mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
 		>
 			<Marker latitude={46.03372400420113} longitude={14.461537798720004}>
 				<DrawingPinIcon

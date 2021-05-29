@@ -5,7 +5,7 @@ export const Container = (props: FlexProps) => {
 
   const bgColor = { light: 'gray.50', dark: 'gray.900' }
 
-  const color = { light: 'black', dark: 'white' }
+  const color = { light: 'gray.900', dark: 'white' }
   return (
     <Flex
       direction="column"
