@@ -15,3 +15,5 @@ export const faunaClient = () => {
 
   return client;
 };
+
+export const fetcher = (query: string) => faunaClient().request(query);

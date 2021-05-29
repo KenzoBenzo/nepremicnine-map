@@ -1,6 +1,6 @@
 import React from "react";
 import { HStack, Flex, Box, Text, Divider } from "@chakra-ui/react";
-import { DarkModeSwitch } from "./DarkModeSwitch";
+import { DarkModeSwitch } from "./dark-mode-switch";
 
 const Navigation = () => {
 	return (
