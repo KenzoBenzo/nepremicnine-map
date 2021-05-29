@@ -44,8 +44,8 @@ const Index = () => {
                 title={house.title}
                 bed={house.bedRooms || 0}
                 bath={house.bathRooms || 0}
-                floor={0}
-                plot={0}
+                floor={house.floorSize || 0}
+                plot={house.plotSize || 0}
                 pricing={100000}
                 location={house.location.neighborhood}
               />

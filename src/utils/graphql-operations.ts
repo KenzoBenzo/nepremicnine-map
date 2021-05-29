@@ -11,6 +11,8 @@ export const GET_PROPERTIES = gql`
         transaction
         bedRooms
         bathRooms
+        floorSize
+        plotSize
         location {
           neighborhood
           latitude

@@ -30,8 +30,8 @@ type Property {
   location: Location! @relation
   totalPrice: Float!
   pricePerMeterSq: Float
-  plotSize: Float
-  floorSize: Float
+  plotSize: Int
+  floorSize: Int
   bedRooms: Int
   bathRooms: Int
 }

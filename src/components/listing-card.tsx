@@ -64,9 +64,9 @@ const Card = ({
 					<Text d="inline-flex">{location}</Text>
 				</Badge>
 			</Flex>
-			<Heading fontWeight="400" fontSize="lg" mt={2}>
+			<Text fontWeight="400" fontSize="lg" mt={2} minH={14}>
 				{title}
-			</Heading>
+			</Text>
 
 			<Divider my={3} borderColor={borderColor} />
 
