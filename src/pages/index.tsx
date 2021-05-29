@@ -46,7 +46,7 @@ const Index = () => {
                 bath={house.bathRooms || 0}
                 floor={house.floorSize || 0}
                 plot={house.plotSize || 0}
-                pricing={100000}
+                pricing={house.totalPrice}
                 location={house.location.neighborhood}
               />
             ))}

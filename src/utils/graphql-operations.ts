@@ -13,6 +13,7 @@ export const GET_PROPERTIES = gql`
         bathRooms
         floorSize
         plotSize
+        totalPrice
         location {
           neighborhood
           latitude
