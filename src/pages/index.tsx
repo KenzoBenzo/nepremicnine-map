@@ -27,13 +27,17 @@ const Index = () => {
   }
 
   if (isValidating && !fetchedData) {
-    return <Center h="90vh"><Spinner /> <Text ml={3}>Loading</Text></Center>;
+    return (
+      <Center h="90vh">
+        <Spinner /> <Text ml={3}>Loading</Text>
+      </Center>
+    );
   }
   const { data } = fetchedData?.properties;
 
   return (
     <Container height="100vh">
-      <HStack align="flex-start" spacing={0} h="100vh" w="100%" overflow='auto'>
+      <HStack align="flex-start" spacing={0} h="100vh" w="100%" overflow="auto">
         <Box w="100%" mx={8}>
           <Navigation />
           <ListingGrid>
@@ -65,7 +69,13 @@ const Index = () => {
           <DynamicMapWithNoSSR>
             <>
               {data.map((property: Property, index: number) => (
-                <MarkerAndPopup key={index} latitude={property.location.latitude} longitude={property.location.longitude} image={property.image} title={property.title} />
+                <MarkerAndPopup
+                  key={index}
+                  latitude={property.location.latitude}
+                  longitude={property.location.longitude}
+                  image={property.image}
+                  title={property.title}
+                />
               ))}
             </>
           </DynamicMapWithNoSSR>
