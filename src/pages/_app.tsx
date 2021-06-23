@@ -3,6 +3,7 @@ import { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
 import Head from "next/head";
 import theme from "../theme";
+import Layout from "../components/layout";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const description =
@@ -28,6 +29,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         {/* <meta content="https://next-mapbox-demo.now.sh" property="og:url" /> */}
       </Head>
       <Component {...pageProps} />
+
     </ChakraProvider>
   );
 }

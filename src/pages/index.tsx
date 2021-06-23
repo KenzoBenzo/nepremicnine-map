@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "../components/app-container";
+import { Layout } from "../components/layout";
 import dynamic from "next/dynamic";
 import { Box, HStack, Text, Center, Spinner } from "@chakra-ui/react";
 import Navigation from "../components/navigation";
@@ -10,6 +10,7 @@ import useSWR from "swr";
 import { GET_PROPERTIES } from "../utils/graphql-operations";
 import { Property } from "../utils/types";
 import { MarkerAndPopup } from "../components/popup-and-marker";
+import MapPanel from "../components/map-panel";
 
 const DynamicMapWithNoSSR = dynamic(() => import("../components/map"), {
   ssr: false,
@@ -36,7 +37,7 @@ const Index = () => {
   const { data } = fetchedData?.properties;
 
   return (
-    <Container height="100vh">
+    <Layout >
       <HStack align="flex-start" spacing={0} h="100vh" w="100%" overflow="auto">
         <Box w="100%" mx={8}>
           <Navigation />
@@ -56,6 +57,21 @@ const Index = () => {
             ))}
           </ListingGrid>
         </Box>
+        {/* <MapPanel>
+          <DynamicMapWithNoSSR>
+            <>
+              {data.map((property: Property, index: number) => (
+                <MarkerAndPopup
+                  key={index}
+                  latitude={property.location.latitude}
+                  longitude={property.location.longitude}
+                  image={property.image}
+                  title={property.title}
+                />
+              ))}
+            </>
+          </DynamicMapWithNoSSR>
+        </MapPanel> */}
         <Box h="100%" w="100%" maxW={600} />
         <Box
           h="100%"
@@ -81,7 +97,7 @@ const Index = () => {
           </DynamicMapWithNoSSR>
         </Box>
       </HStack>
-    </Container>
+    </Layout>
   );
 };
 

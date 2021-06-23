@@ -1,21 +1,22 @@
 import React from "react";
-import { HStack, Flex, Box, Text, Divider, Input, InputLeftElement, InputGroup, useColorModeValue } from "@chakra-ui/react";
+import { HStack, Flex, Box, Text, Divider, Input, InputLeftElement, InputGroup, useColorModeValue, Link } from "@chakra-ui/react";
 import { DarkModeSwitch } from "./dark-mode-switch";
 import { SearchIcon } from "@chakra-ui/icons";
 
 const Navigation = () => {
 	const iconColor = useColorModeValue("gray.300", "gray.700")
+	const backgroundColor = useColorModeValue("white", "gray.900")
 	return (
 		<>
-			<HStack p={2} justify="space-between">
+			<HStack p={2} justify="space-between" position='sticky' top={0} backgroundColor={backgroundColor} zIndex={10}>
 				<Flex align="center">
 					<Box boxSize={8} bgColor="emerald.500" mr={4} borderRadius="lg" />
 					<Text>Nepremičnine Map</Text>
 				</Flex>
 				<HStack>
-					<Text>Buy</Text>
-					<Text>Sell</Text>
-					<Text>Rent</Text>
+					<Link>Buy</Link>
+					<Link>Sell</Link>
+					<Link>Rent</Link>
 				</HStack>
 				<HStack>
 					<InputGroup maxW="200px" size="sm">
@@ -28,7 +29,7 @@ const Navigation = () => {
 					<DarkModeSwitch />
 				</HStack>
 			</HStack>
-			<Divider />
+			<Divider position='sticky' top="48px" />
 		</>
 	);
 };

@@ -1,5 +1,5 @@
 import { extendTheme } from "@chakra-ui/react";
-import { createBreakpoints } from "@chakra-ui/theme-tools";
+import { createBreakpoints, GlobalStyleProps } from "@chakra-ui/theme-tools";
 
 const fonts = { mono: `'Menlo', monospace` };
 
@@ -11,6 +11,25 @@ const breakpoints = createBreakpoints({
 });
 
 const theme = extendTheme({
+	styles: {
+		global: (props: GlobalStyleProps) => ({
+			'html, body': {
+				scrollBehavior: 'smooth',
+				backgroundColor: props.colorMode === 'dark' ? 'gray.900' : 'white',
+				color: props.colorMode === 'dark' ? 'gray.200' : 'gray.700',
+				webkitFontSmoothing: 'antialiased',
+				fontSmoothing: 'always',
+				fontFeatureSettings: 'tnum',
+			},
+			_selection: {
+				color: '#10b981',
+				background: 'rgba(167,243,208,.24)',
+			},
+		})
+	},
+	config: {
+		useSystemColorMode: true,
+	},
 	colors: {
 		red: {
 			50: "#fef2f2",
