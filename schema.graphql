@@ -1,42 +1,95 @@
-enum PropertyType {
-  house
-  land
-  appartment
+enum HouseType {
+  detached
+  duplex
+  triplex
+  multiplex
+}
+
+enum AppartmentType {
+  studio
+  condominium
+  multiroom
+}
+
+enum PlotType {
+  construction
+  agricultural
+  farm
+  investment
 }
 
 enum Transaction {
   BUY
   RENT
 }
+type Agent {
+  name: String
+  phoneNumber: String
+  headshot: String
+  agency: Agency @relation
+}
 
-type Address {
+type Agency {
+  name: String
+  website: String
+  logo: String
+  agents: [Agent]! @relation
   street: String
   city: String!
   postalCode: Int
+  phoneNumber: String
 }
 
 type Location {
+  street: String
+  city: String!
+  postalCode: Int
+  municipality: String
   neighborhood: String!
   longitude: Float!
   latitude: Float!
-  address: Address! @relation
 }
 
-type Property {
+interface Property {
   title: String! @unique
-  type: PropertyType!
+  description: String
   transaction: Transaction!
-  image: String
-  location: Location! @relation
+  images: [String]
   totalPrice: Float!
   pricePerMeterSq: Float
+  location: Location! @relation
+  agent: Agent
+}
+
+type House implements Property {
+  type: HouseType!
+  yearOfBuild: Int
+  yearOfRenovation: Int
   plotSize: Int
   floorSize: Int
   bedRooms: Int
   bathRooms: Int
 }
 
+type Appartment implements Property {
+  type: AppartmentType!
+  yearOfBuild: Int
+  yearOfRenovation: Int
+  parking: Boolean
+  floorSize: Int
+  bedRooms: Int
+  bathRooms: Int
+}
+
+type Plot implements Property {
+  type: PlotType!
+  plotSize: Int
+  locationInformation: String
+}
+
 type Query {
-  properties: [Property!]
-  allOfPropertyType(type: PropertyType = house): [Property!]
+  properties: [Property]
+  houses: [House]
+  appartments: [Appartment]
+  plots: [Plot]
 }
