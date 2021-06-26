@@ -17,24 +17,24 @@ const DynamicMapWithNoSSR = dynamic(() => import("../components/map"), {
 });
 
 const Index = () => {
-  const {
-    data: fetchedData,
-    error,
-    isValidating,
-  } = useSWR(GET_PROPERTIES, fetcher);
+  // const {
+  //   data: fetchedData,
+  //   error,
+  //   isValidating,
+  // } = useSWR(GET_PROPERTIES, fetcher);
 
-  if (error) {
-    return <Text color="red.500">{JSON.stringify(error, null, 2)}</Text>;
-  }
+  // if (error) {
+  //   return <Text color="red.500">{JSON.stringify(error, null, 2)}</Text>;
+  // }
 
-  if (isValidating && !fetchedData) {
-    return (
-      <Center h="90vh">
-        <Spinner /> <Text ml={3}>Loading</Text>
-      </Center>
-    );
-  }
-  const { data } = fetchedData?.properties;
+  // if (isValidating && !fetchedData) {
+  //   return (
+  //     <Center h="90vh">
+  //       <Spinner /> <Text ml={3}>Loading</Text>
+  //     </Center>
+  //   );
+  // }
+  // const { data } = fetchedData?.properties;
 
   return (
     <Layout >
@@ -42,7 +42,7 @@ const Index = () => {
         <Box w="100%" mx={8}>
           <Navigation />
           <ListingGrid>
-            {data.map((house: Property, index: number) => (
+            {/* {data.map((house: Property, index: number) => (
               <Card
                 key={index}
                 image={house.image}
@@ -54,7 +54,7 @@ const Index = () => {
                 pricing={house.totalPrice}
                 location={house.location.neighborhood}
               />
-            ))}
+            ))} */}
           </ListingGrid>
         </Box>
         {/* <MapPanel>
@@ -84,7 +84,7 @@ const Index = () => {
         >
           <DynamicMapWithNoSSR>
             <>
-              {data.map((property: Property, index: number) => (
+              {/* {data.map((property: Property, index: number) => (
                 <MarkerAndPopup
                   key={index}
                   latitude={property.location.latitude}
@@ -92,7 +92,7 @@ const Index = () => {
                   image={property.image}
                   title={property.title}
                 />
-              ))}
+              ))} */}
             </>
           </DynamicMapWithNoSSR>
         </Box>

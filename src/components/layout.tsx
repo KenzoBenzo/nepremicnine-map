@@ -8,6 +8,8 @@ export const Layout = (props: FlexProps) => {
       alignItems="center"
       justifyContent="flex-start"
       height="100vh"
+      w="100%"
+
       {...props}
     />
   )

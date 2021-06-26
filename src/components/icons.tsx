@@ -19,6 +19,17 @@ export const DrawingPinIcon = createIcon({
 	),
 });
 
+export const HouseIcon = createIcon({
+	displayName: "HouseIcon",
+	viewBox: "0 0 24 24",
+	path: (
+		<g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
+			<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+			<polyline points="9 22 9 12 15 12 15 22" />
+		</g>
+	)
+})
+
 export const BedIcon = createIcon({
 	displayName: "BedIcon",
 	viewBox: "0 0 16 16",

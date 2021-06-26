@@ -22,11 +22,13 @@ enum Transaction {
   BUY
   RENT
 }
+
 type Agent {
-  name: String
+  name: String!
+  email: String!
   phoneNumber: String
   headshot: String
-  agency: Agency @relation
+  agency: Agency
 }
 
 type Agency {
@@ -45,23 +47,21 @@ type Location {
   city: String!
   postalCode: Int
   municipality: String
-  neighborhood: String!
+  neighborhood: String
   longitude: Float!
   latitude: Float!
 }
 
-interface Property {
-  title: String! @unique
+type House {
+  title: String @unique
   description: String
   transaction: Transaction!
+  sold: Boolean
   images: [String]
   totalPrice: Float!
   pricePerMeterSq: Float
-  location: Location! @relation
+  location: Location!
   agent: Agent
-}
-
-type House implements Property {
   type: HouseType!
   yearOfBuild: Int
   yearOfRenovation: Int
@@ -71,7 +71,16 @@ type House implements Property {
   bathRooms: Int
 }
 
-type Appartment implements Property {
+type Appartment {
+  title: String @unique
+  description: String
+  transaction: Transaction!
+  sold: Boolean
+  images: [String]
+  totalPrice: Float!
+  pricePerMeterSq: Float
+  location: Location!
+  agent: Agent
   type: AppartmentType!
   yearOfBuild: Int
   yearOfRenovation: Int
@@ -81,15 +90,24 @@ type Appartment implements Property {
   bathRooms: Int
 }
 
-type Plot implements Property {
+type Plot {
+  title: String @unique
+  description: String
+  transaction: Transaction!
+  sold: Boolean
+  images: [String]
+  totalPrice: Float!
+  pricePerMeterSq: Float
+  location: Location!
+  agent: Agent
   type: PlotType!
   plotSize: Int
   locationInformation: String
 }
 
 type Query {
-  properties: [Property]
   houses: [House]
   appartments: [Appartment]
   plots: [Plot]
+  agencies: [Agency]
 }
