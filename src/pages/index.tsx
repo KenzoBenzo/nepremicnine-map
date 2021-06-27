@@ -1,18 +1,17 @@
-import React from "react";
-import { Layout } from "../components/layout";
-import dynamic from "next/dynamic";
-import { Box, HStack, Text, Center, Spinner } from "@chakra-ui/react";
-import Navigation from "../components/navigation";
-import Card from "../components/listing-card";
-import ListingGrid from "../components/listing-grid";
-import { fetcher } from "../utils/graphql-client";
-import useSWR from "swr";
-import { GET_PROPERTIES } from "../utils/graphql-operations";
-import { Property } from "../utils/types";
-import { MarkerAndPopup } from "../components/popup-and-marker";
-import MapPanel from "../components/map-panel";
+import React from 'react';
+import { Layout } from '../components/layout';
+import dynamic from 'next/dynamic';
+import { Box, HStack /*Text, Center, Spinner*/ } from '@chakra-ui/react';
+import Navigation from '../components/navigation';
+// import Card from "../components/listing-card";
+import ListingGrid from '../components/listing-grid';
+// import { fetcher } from "../utils/graphql-client";
+// import useSWR from "swr";
+// import { GET_PROPERTIES } from "../utils/graphql-operations";
+// import { Property } from "../utils/types";
+// import { MarkerAndPopup } from "../components/popup-and-marker";
 
-const DynamicMapWithNoSSR = dynamic(() => import("../components/map"), {
+const DynamicMapWithNoSSR = dynamic(() => import('../components/map'), {
   ssr: false,
 });
 
@@ -37,7 +36,7 @@ const Index = () => {
   // const { data } = fetchedData?.properties;
 
   return (
-    <Layout >
+    <Layout>
       <HStack align="flex-start" spacing={0} h="100vh" w="100%" overflow="auto">
         <Box w="100%" mx={8}>
           <Navigation />

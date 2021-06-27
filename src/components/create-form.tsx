@@ -12,9 +12,21 @@ import {
   useRadio,
   useRadioGroup,
   useColorModeValue,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  Input,
+  InputGroup,
+  InputLeftElement,
 } from '@chakra-ui/react';
-import { SunIcon } from '@chakra-ui/icons';
-import { HouseIcon } from './icons';
+import {
+  AppartmentIcon,
+  CompassIcon,
+  DrawingPinIcon,
+  HouseIcon,
+} from './icons';
 import { transparentize } from '@chakra-ui/theme-tools';
 
 function RadioCard(props: RadioProps) {
@@ -22,8 +34,9 @@ function RadioCard(props: RadioProps) {
   const input = getInputProps();
   const checkbox = getCheckboxProps();
   const transparentEmerald = transparentize('emerald.200', 0.12);
+  const emeraldAccent = useColorModeValue('emerald.600', 'emerald.400');
 
-  console.log(props)
+  console.log(props);
 
   return (
     <Box as="label">
@@ -39,8 +52,8 @@ function RadioCard(props: RadioProps) {
         boxShadow="sm"
         _checked={{
           bg: transparentEmerald,
-          color: 'emerald.600',
-          borderColor: 'emerald.600',
+          color: emeraldAccent,
+          borderColor: emeraldAccent,
         }}
         p={4}
         h="196px"
@@ -59,7 +72,7 @@ function RadioCard(props: RadioProps) {
             boxSize={3}
             border="none"
             borderRadius="full"
-            backgroundColor={props.isChecked ? "emerald.600" : 'transparent'}
+            backgroundColor={props.isChecked ? emeraldAccent : 'transparent'}
           />
         </Box>
       </Flex>
@@ -70,7 +83,8 @@ function RadioCard(props: RadioProps) {
 // Step 2: Use the `useRadioGroup` hook to control a group of custom radios.
 const PropertyRadio = () => {
   const options = ['House', 'Appartment', 'Land'];
-  const fontColor = useColorModeValue('gray.700', 'white');
+  const subTextColor = useColorModeValue('gray.700', 'gray.300');
+  const headingColor = useColorModeValue('gray.900', 'white');
 
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: 'propertyType',
@@ -90,24 +104,25 @@ const PropertyRadio = () => {
               {value === 'House' ? (
                 <HouseIcon strokeWidth={2} mb={4} boxSize={8} />
               ) : value === 'Appartment' ? (
-                <SunIcon strokeWidth={2} mb={4} boxSize={8} />
+                <AppartmentIcon strokeWidth={2} mb={4} boxSize={8} />
               ) : value === 'Land' ? (
-                <SunIcon strokeWidth={2} mb={4} boxSize={8} />
+                <CompassIcon strokeWidth={2} mb={4} boxSize={8} />
               ) : null}
-              <Text
-                fontSize="xl"
-                fontWeight="800"
-                fontColor={fontColor}
-                color="gray.900"
-              >
+              <Text fontSize="xl" fontWeight="800" color={headingColor}>
                 {value}
               </Text>
               {value === 'House' ? (
-                <Text color="gray.700">
-                  Detached, duplex, triplex, multiplex, etc
+                <Text color={subTextColor} textAlign="center">
+                  Detached, duplex, triplex, etc
                 </Text>
               ) : value === 'Appartment' ? (
-                <Text>Studio, condominium, etc</Text>
+                <Text color={subTextColor} textAlign="center">
+                  Studio, condominium, etc
+                </Text>
+              ) : value === 'Land' ? (
+                <Text color={subTextColor} textAlign="center">
+                  Residential, farm, investment, etc
+                </Text>
               ) : null}
             </>
           </RadioCard>
@@ -118,12 +133,63 @@ const PropertyRadio = () => {
 };
 
 export const CreatePropertyForm = () => {
+  const tertiaryColor = useColorModeValue('gray.400', 'gray.600');
   return (
-    <Stack as="form" mt={12}>
+    <Stack as="form" mt={12} spacing={8}>
       <Heading mb={6}>Create a new listing</Heading>
       <FormControl>
         <FormLabel>Property type</FormLabel>
         <PropertyRadio />
+      </FormControl>
+      <HStack>
+        <FormControl>
+          <FormLabel>Total price</FormLabel>
+          <NumberInput
+            mr="2rem"
+            min={1000}
+            max={1000000}
+            step={1000}
+            defaultValue={10000}
+          >
+            <NumberInputField />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
+        </FormControl>
+        <FormControl>
+          <FormLabel>
+            Price / m²{' '}
+            <Box as="span" color={tertiaryColor} fontStyle="italic" ml={2}>
+              optional
+            </Box>
+          </FormLabel>
+          <NumberInput
+            mr="2rem"
+            min={1000}
+            max={1000000}
+            step={1000}
+            defaultValue={100}
+          >
+            <NumberInputField />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
+        </FormControl>
+      </HStack>
+
+      <FormControl>
+        <FormLabel>Where is this property located?</FormLabel>
+        <InputGroup>
+          <InputLeftElement
+            pointerEvents="none"
+            children={<DrawingPinIcon />}
+          />
+          <Input type="address" placeholder="Start typing an address" />
+        </InputGroup>
       </FormControl>
     </Stack>
   );
