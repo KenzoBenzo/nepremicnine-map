@@ -20,13 +20,13 @@ const PropertyPage = () => {
     );
   }
   if (error) {
-    return <Text color="red.500">{JSON.stringify(error, null, 2)}</Text>;
+    console.error(JSON.stringify(error, null, 2));
+    return <Text color="red.500">Ooops!</Text>;
   }
 
   const data = fetchedData.findHouseByID;
   return (
     <Box>
-      <h1>Property Page</h1>
       <Text>{data.title}</Text>
     </Box>
   );

@@ -20,7 +20,11 @@ const Navigation = () => {
     <>
       <HStack p={2} justify="space-between" w="100%">
         <Flex align="center">
-          <LogoIcon h={8} w="auto" />
+          <Link href="/">
+            <a>
+              <LogoIcon h={8} w="auto" />
+            </a>
+          </Link>
         </Flex>
         <HStack spacing={5}>
           <Link href="/">
