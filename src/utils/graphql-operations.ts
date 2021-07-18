@@ -26,3 +26,11 @@ export const GET_PROPERTIES = gql`
     }
   }
 `;
+
+export const GET_HOUSE = gql`
+  query GET_HOUSE($houseID: ID!) {
+    findHouseByID(id: $houseID) {
+      title
+    }
+  }
+`;
