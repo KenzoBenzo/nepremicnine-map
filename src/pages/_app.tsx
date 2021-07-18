@@ -1,12 +1,13 @@
-import React from "react";
-import { AppProps } from "next/app";
-import { ChakraProvider } from "@chakra-ui/react";
-import Head from "next/head";
-import theme from "../theme";
+import React from 'react';
+import { AppProps } from 'next/app';
+import { ChakraProvider } from '@chakra-ui/react';
+import Head from 'next/head';
+import theme from '../theme';
+import { Layout } from '../components/layout';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const description =
-    "Creating a non-SSR map component inside a Next.js project.";
+    'Creating a non-SSR map component inside a Next.js project.';
   const title = `Next.js + Mapbox Demo - ${description}`;
   return (
     <ChakraProvider resetCSS theme={theme}>
@@ -27,8 +28,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         {/* <meta property="og:image" content="/static/banner.jpg" /> */}
         {/* <meta content="https://next-mapbox-demo.now.sh" property="og:url" /> */}
       </Head>
-      <Component {...pageProps} />
-
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </ChakraProvider>
   );
 }
