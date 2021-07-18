@@ -22,7 +22,7 @@ const Navigation = () => {
         <Flex align="center">
           <LogoIcon h={8} w="auto" />
         </Flex>
-        <HStack>
+        <HStack spacing={5}>
           <Link href="/">
             <ChakraLink>Buy</ChakraLink>
           </Link>
@@ -32,7 +32,7 @@ const Navigation = () => {
           <ChakraLink>Rent</ChakraLink>
         </HStack>
         <HStack>
-          <InputGroup maxW="200px" size="sm">
+          <InputGroup minW="250px" size="sm">
             <InputLeftElement
               pointerEvents="none"
               children={<SearchIcon color={iconColor} />}

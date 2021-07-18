@@ -1,8 +1,7 @@
 import React from 'react';
 import { Layout } from '../components/layout';
 import dynamic from 'next/dynamic';
-import { Box, HStack, Text, Center, Spinner } from '@chakra-ui/react';
-import Navigation from '../components/navigation';
+import { Box, Stack, Text, Center, Spinner } from '@chakra-ui/react';
 import Card from '../components/listing-card';
 import ListingGrid from '../components/listing-grid';
 import { fetcher } from '../utils/graphql-client';
@@ -36,7 +35,13 @@ const Index = () => {
 
   return (
     <Layout>
-      <HStack align="flex-start" spacing={0} h="100vh" w="100%" overflow="auto">
+      <Stack
+        direction={['column-reverse', 'row']}
+        spacing={0}
+        h="100vh"
+        w="100%"
+        overflow="auto"
+      >
         <Box w="100%" mx={8}>
           <ListingGrid>
             {fetchedData?.houses?.data?.map(
@@ -75,7 +80,7 @@ const Index = () => {
             </>
           </DynamicMapWithNoSSR>
         </Box>
-      </HStack>
+      </Stack>
     </Layout>
   );
 };
