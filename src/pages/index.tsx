@@ -1,8 +1,7 @@
 import React from 'react';
 import { Layout } from '../components/layout';
 import dynamic from 'next/dynamic';
-import { Box, HStack, Text, Center, Spinner } from '@chakra-ui/react';
-import Navigation from '../components/navigation';
+import { Box, Stack, Text, Center, Spinner } from '@chakra-ui/react';
 import Card from '../components/listing-card';
 import ListingGrid from '../components/listing-grid';
 import { fetcher } from '../utils/graphql-client';
@@ -34,13 +33,16 @@ const Index = () => {
     );
   }
 
-  console.log(fetchedData.houses);
-
   return (
     <Layout>
-      <HStack align="flex-start" spacing={0} h="100vh" w="100%" overflow="auto">
+      <Stack
+        direction={['column-reverse', 'row']}
+        spacing={0}
+        h="100vh"
+        w="100%"
+        overflow="auto"
+      >
         <Box w="100%" mx={8}>
-          <Navigation />
           <ListingGrid>
             {fetchedData?.houses?.data?.map(
               (house: Property, index: number) => (
@@ -60,16 +62,7 @@ const Index = () => {
           </ListingGrid>
         </Box>
 
-        <Box h="100%" w="100%" maxW={600} />
-        <Box
-          h="100%"
-          w="100%"
-          maxW={600}
-          position="fixed"
-          top={0}
-          right={0}
-          bottom={0}
-        >
+        <Box h="100%" w="100%" maxW={600}>
           <DynamicMapWithNoSSR>
             <>
               {fetchedData?.houses?.data?.map(
@@ -87,7 +80,7 @@ const Index = () => {
             </>
           </DynamicMapWithNoSSR>
         </Box>
-      </HStack>
+      </Stack>
     </Layout>
   );
 };

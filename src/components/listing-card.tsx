@@ -43,7 +43,14 @@ const Card = ({
 
   return (
     <Box maxW="375px" p={2} borderRadius="xl">
-      <Image src={image} alt="Lipahova" borderRadius="md" mb={4} w="100%" />
+      <Image
+        src={image}
+        alt={`Cover image of ${title}`}
+        borderRadius="md"
+        mb={4}
+        maxH="200px"
+        w="100%"
+      />
       <Flex justify="space-between" align="center">
         <Text fontSize="xl" fontWeight="800">
           {eurFormatter.format(pricing)}
