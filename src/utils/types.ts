@@ -1,4 +1,5 @@
 export type Property = {
+  _id: string;
   title: string;
   images: [string];
   location: {
