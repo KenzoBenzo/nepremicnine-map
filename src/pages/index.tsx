@@ -34,8 +34,6 @@ const Index = () => {
     );
   }
 
-  console.log(fetchedData.houses);
-
   return (
     <Layout>
       <HStack align="flex-start" spacing={0} h="100vh" w="100%" overflow="auto">
