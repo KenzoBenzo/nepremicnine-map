@@ -2,8 +2,6 @@ import React from 'react';
 import {
   HStack,
   Flex,
-  Box,
-  Text,
   Link as ChakraLink,
   Divider,
   Input,

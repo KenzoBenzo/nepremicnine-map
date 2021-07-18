@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Box,
   Image,
@@ -8,14 +8,15 @@ import {
   Badge,
   Divider,
   useColorModeValue,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 import {
   BathIcon,
   BedIcon,
   FloorIcon,
   PlotIcon,
   DrawingPinIcon,
-} from "./icons";
+} from './icons';
+import { eurFormatter } from '../utils/euro-formatter';
 
 type CardProps = {
   image: string;
@@ -28,12 +29,6 @@ type CardProps = {
   location: string;
 };
 
-const eurFormatter = new Intl.NumberFormat("de-DE", {
-  style: "currency",
-  currency: "EUR",
-  maximumSignificantDigits: 2,
-});
-
 const Card = ({
   image,
   title,
@@ -44,7 +39,7 @@ const Card = ({
   pricing,
   location,
 }: CardProps) => {
-  const borderColor = useColorModeValue("gray.100", "gray.700");
+  const borderColor = useColorModeValue('gray.100', 'gray.700');
 
   return (
     <Box maxW="375px" p={2} borderRadius="xl">

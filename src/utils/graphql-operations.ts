@@ -1,12 +1,15 @@
-import { gql } from "graphql-request";
+import { gql } from 'graphql-request';
 
 export const GET_PROPERTIES = gql`
   query GET_PROPERTIES {
-    properties {
+    houses {
       data {
         _id
         title
-        image
+        naslov
+        description
+        opis
+        images
         type
         transaction
         bedRooms

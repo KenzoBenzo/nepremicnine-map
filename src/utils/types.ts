@@ -1,6 +1,6 @@
 export type Property = {
   title: string;
-  image: string;
+  images: [string];
   location: {
     neighborhood: string;
     longitude: number;
@@ -10,11 +10,11 @@ export type Property = {
       city: string;
       postalCode: number;
     };
-  }
+  };
   totalPrice: number;
   pricePerMeterSq: number;
   plotSize: number;
   floorSize: number;
   bedRooms: number;
   bathRooms: number;
-}
+};

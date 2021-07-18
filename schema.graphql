@@ -25,7 +25,7 @@ enum Transaction {
 
 type Agent {
   name: String!
-  email: String!
+  email: String
   phoneNumber: String
   headshot: String
   agency: Agency
@@ -53,8 +53,16 @@ type Location {
 }
 
 type House {
+  "English title field that summarizes the property."
   title: String @unique
+  "Slovenian title field that summarizes the property."
+  naslov: String @unique
+  "English description field that describes the property."
   description: String
+  "Slovenian description field that describes the property."
+  opis: String
+  "Where was this listing originally published?"
+  referenceLink: String
   transaction: Transaction!
   sold: Boolean
   images: [String]
@@ -68,12 +76,20 @@ type House {
   plotSize: Int
   floorSize: Int
   bedRooms: Int
-  bathRooms: Int
+  bathRooms: Float
 }
 
 type Appartment {
+  "English title field that summarizes the property."
   title: String @unique
+  "Slovenian title field that summarizes the property."
+  naslov: String @unique
+  "English description field that describes the property."
   description: String
+  "Slovenian description field that describes the property."
+  opis: String
+  "Where was this listing originally published?"
+  referenceLink: String
   transaction: Transaction!
   sold: Boolean
   images: [String]
@@ -87,12 +103,20 @@ type Appartment {
   parking: Boolean
   floorSize: Int
   bedRooms: Int
-  bathRooms: Int
+  bathRooms: Float
 }
 
 type Plot {
+  "English title field that summarizes the property."
   title: String @unique
+  "Slovenian title field that summarizes the property."
+  naslov: String @unique
+  "English description field that describes the property."
   description: String
+  "Slovenian description field that describes the property."
+  opis: String
+  "Where was this listing originally published?"
+  referenceLink: String
   transaction: Transaction!
   sold: Boolean
   images: [String]
