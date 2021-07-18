@@ -38,7 +38,6 @@ const Index = () => {
     <Layout>
       <HStack align="flex-start" spacing={0} h="100vh" w="100%" overflow="auto">
         <Box w="100%" mx={8}>
-          <Navigation />
           <ListingGrid>
             {fetchedData?.houses?.data?.map(
               (house: Property, index: number) => (
@@ -58,16 +57,7 @@ const Index = () => {
           </ListingGrid>
         </Box>
 
-        <Box h="100%" w="100%" maxW={600} />
-        <Box
-          h="100%"
-          w="100%"
-          maxW={600}
-          position="fixed"
-          top={0}
-          right={0}
-          bottom={0}
-        >
+        <Box h="100%" w="100%" maxW={600}>
           <DynamicMapWithNoSSR>
             <>
               {fetchedData?.houses?.data?.map(
