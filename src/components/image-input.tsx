@@ -26,6 +26,7 @@ export const UploadSingleImage = () => {
 
       {imageUrl && (
         <div>
+          {/* @ts-expect-error */}
           <Image src={imageUrl} width={width} height={height} />
           <div>{imageUrl}</div>
           <div>
@@ -47,6 +48,7 @@ export const UploadMultipleImages = () => {
 
     for (let index = 0; index < files.length; index++) {
       const file = files[index];
+      // @ts-expect-error
       const { url } = await uploadToS3(file);
       urls.push(url);
     }
