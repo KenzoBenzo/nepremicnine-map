@@ -16,6 +16,7 @@
 		"graphql": "^15.5.1",
 		"graphql-request": "^3.5.0",
 		"next": "^11.0.1",
+		"next-s3-upload": "^0.1.5",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
 		"react-map-gl": "^6.1.16",

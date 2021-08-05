@@ -36,8 +36,6 @@ function RadioCard(props: RadioProps) {
   const transparentEmerald = transparentize('emerald.200', 0.12);
   const emeraldAccent = useColorModeValue('emerald.600', 'emerald.400');
 
-  console.log(props);
-
   return (
     <Box as="label">
       <input {...input} />
