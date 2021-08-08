@@ -8,12 +8,19 @@ import {
   Flex,
   Heading,
   useColorModeValue,
+  Avatar,
+  Button,
+  ButtonGroup,
+  Wrap,
+  WrapItem,
+  Divider,
 } from '@chakra-ui/react';
 import useSWR from 'swr';
 import { GET_HOUSE } from '../../utils/graphql-operations';
 import { faunaClient } from '../../utils/graphql-client';
 import { useRouter } from 'next/dist/client/router';
 import dynamic from 'next/dynamic';
+import { eurFormatter } from '../../utils/euro-formatter';
 
 const PropertyPage = () => {
   const router = useRouter();
@@ -50,15 +57,52 @@ const PropertyPage = () => {
       w="100%"
       overflow="auto"
     >
-      <Box w="100%" mx={8}>
+      <Box w="100%" mt={8} mx={8}>
         <Flex mb={16}>
           {/* Image grid */}
-          {data.images.map((image, i) => (
-            <img style={{ maxWidth: '100px' }} src={image} key={i} />
-          ))}
+          <Box mr={8}>
+            <img
+              src={data.images[0]}
+              style={{ borderRadius: 8, marginBottom: 8 }}
+            />
+            <Wrap>
+              {data.images.map((image: string, i: number) => (
+                <WrapItem>
+                  <img
+                    style={{ maxWidth: '100px', borderRadius: 6 }}
+                    src={image}
+                    key={i}
+                  />
+                </WrapItem>
+              ))}
+            </Wrap>
+          </Box>
           {/* Price / CTA / Agent */}
+          <Stack
+            p={4}
+            backgroundColor={cardColor}
+            boxShadow="md"
+            borderRadius="lg"
+          >
+            <Avatar />
+            <Text fontSize="sm" mb={4}>
+              Agent name
+            </Text>
+            <Heading as="h2" fontSize="3xl" my={4}>
+              {eurFormatter.format(data.totalPrice)}
+            </Heading>
+            <ButtonGroup>
+              <Button colorScheme="emerald">Book a viewing</Button>
+              <Button>Schedule a call</Button>
+            </ButtonGroup>
+
+            <Divider py={4} />
+            {/* Posted on */}
+            {/* Viewings of this listing */}
+            {/* Houses in this neighborhood recently sold for */}
+          </Stack>
         </Flex>
-        <Box mb={16}>
+        <Box mb={8}>
           <Text textTransform="uppercase" color={tertiary} fontWeight="600">
             {data.type}
           </Text>
