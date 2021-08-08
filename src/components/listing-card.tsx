@@ -46,7 +46,7 @@ const Card = ({
   const hoverBackground = useColorModeValue('gray.50', 'gray.800');
 
   return (
-    <NextLink href={`/${id}`}>
+    <NextLink href={`/houses/${id}`}>
       <Box
         cursor="pointer"
         as="a"

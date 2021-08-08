@@ -1,9 +1,9 @@
-import React, { useState, ReactNode } from "react";
-import ReactMapGL from "react-map-gl";
-import { useColorMode } from "@chakra-ui/react";
+import React, { useState, ReactNode } from 'react';
+import ReactMapGL from 'react-map-gl';
+import { useColorMode } from '@chakra-ui/react';
 
 type MapProps = {
-  children: ReactNode;
+  children?: ReactNode;
 };
 
 function Map({ children }: MapProps) {
@@ -21,9 +21,9 @@ function Map({ children }: MapProps) {
       height="100%"
       onViewportChange={setViewport}
       mapStyle={
-        colorMode === "light"
-          ? "mapbox://styles/kenzobenzo/ckpaynybp2jww17l0ddkpe9y8"
-          : "mapbox://styles/kenzobenzo/ckpaysqeo2pkk17ms6xj7czhs"
+        colorMode === 'light'
+          ? 'mapbox://styles/kenzobenzo/ckpaynybp2jww17l0ddkpe9y8'
+          : 'mapbox://styles/kenzobenzo/ckpaysqeo2pkk17ms6xj7czhs'
       }
       mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
     >
