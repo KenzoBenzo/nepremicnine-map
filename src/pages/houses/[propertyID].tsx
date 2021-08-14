@@ -14,13 +14,23 @@ import {
   Wrap,
   WrapItem,
   Divider,
+  Stat,
+  StatLabel,
+  StatNumber,
 } from '@chakra-ui/react';
 import useSWR from 'swr';
 import { GET_HOUSE } from '../../utils/graphql-operations';
 import { faunaClient } from '../../utils/graphql-client';
-import { useRouter } from 'next/dist/client/router';
+import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import { eurFormatter } from '../../utils/euro-formatter';
+import {
+  BathIcon,
+  BedIcon,
+  FloorIcon,
+  PlotIcon,
+  DrawingPinIcon,
+} from '../../components/icons';
 
 const PropertyPage = () => {
   const router = useRouter();
@@ -45,6 +55,8 @@ const PropertyPage = () => {
   }
 
   const data = fetchedData.findHouseByID;
+
+  console.log(data);
 
   const DynamicMapWithNoSSR = dynamic(() => import('../../components/map'), {
     ssr: false,
@@ -110,15 +122,54 @@ const PropertyPage = () => {
             {data.title}
           </Heading>
         </Box>
-        <Flex
+        <Stack
+          w="full"
+          direction="row"
+          justify="space-between"
           mb={16}
           p={4}
           backgroundColor={cardColor}
           boxShadow="md"
           borderRadius="lg"
         >
+          <Stat>
+            <StatLabel>Bedrooms</StatLabel>
+            <StatNumber>
+              <BedIcon />
+              {data.bedRooms}
+            </StatNumber>
+          </Stat>
+
+          <Stat>
+            <StatLabel>Bathrooms</StatLabel>
+            <StatNumber>
+              <BathIcon />
+              {data.bathRooms}
+            </StatNumber>
+          </Stat>
+
+          <Stat>
+            <StatLabel>Floor size</StatLabel>
+            <StatNumber>
+              <FloorIcon /> {data.floorSize}m2
+            </StatNumber>
+          </Stat>
+
+          <Stat>
+            <StatLabel>Plot size</StatLabel>
+            <StatNumber>
+              <PlotIcon /> {data.plotSize}m2
+            </StatNumber>
+          </Stat>
+
+          <Stat>
+            <StatLabel>Built / Renovated</StatLabel>
+            <StatNumber>
+              {data.yearOfBuild}/{data.yearOfRenovation || '—'}
+            </StatNumber>
+          </Stat>
           {/* Bedrooms, bathrooms, floor m2, plot m2, built in, renovated in */}
-        </Flex>
+        </Stack>
 
         <Heading as="h3" fontSize="xl">
           Description

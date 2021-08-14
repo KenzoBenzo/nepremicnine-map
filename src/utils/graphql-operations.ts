@@ -43,6 +43,8 @@ export const GET_HOUSE = gql`
       floorSize
       plotSize
       totalPrice
+      yearOfBuild
+      yearOfRenovation
       location {
         neighborhood
         latitude
