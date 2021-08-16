@@ -24,13 +24,7 @@ import { faunaClient } from '../../utils/graphql-client';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import { eurFormatter } from '../../utils/euro-formatter';
-import {
-  BathIcon,
-  BedIcon,
-  FloorIcon,
-  PlotIcon,
-  DrawingPinIcon,
-} from '../../components/icons';
+import { BathIcon, BedIcon, FloorIcon, PlotIcon } from '../../components/icons';
 
 const PropertyPage = () => {
   const router = useRouter();
@@ -55,8 +49,6 @@ const PropertyPage = () => {
   }
 
   const data = fetchedData.findHouseByID;
-
-  console.log(data);
 
   const DynamicMapWithNoSSR = dynamic(() => import('../../components/map'), {
     ssr: false,
@@ -132,42 +124,42 @@ const PropertyPage = () => {
           boxShadow="md"
           borderRadius="lg"
         >
-          <Stat>
+          <Stat maxW="fit-content">
             <StatLabel>Bedrooms</StatLabel>
             <StatNumber>
-              <BedIcon />
+              <BedIcon mr={2} />
               {data.bedRooms}
             </StatNumber>
           </Stat>
 
-          <Stat>
+          <Stat maxW="fit-content">
             <StatLabel>Bathrooms</StatLabel>
-            <StatNumber>
-              <BathIcon />
+            <StatNumber alignItems="center" lineHeight="1">
+              <BathIcon mr={2} />
               {data.bathRooms}
             </StatNumber>
           </Stat>
 
-          <Stat>
+          <Stat maxW="fit-content">
             <StatLabel>Floor size</StatLabel>
-            <StatNumber>
-              <FloorIcon /> {data.floorSize}m2
+            <StatNumber alignItems="center" lineHeight="1">
+              <FloorIcon mr={2} /> {data.floorSize} m²
             </StatNumber>
           </Stat>
 
-          <Stat>
+          <Stat maxW="fit-content">
             <StatLabel>Plot size</StatLabel>
-            <StatNumber>
-              <PlotIcon /> {data.plotSize}m2
+            <StatNumber alignItems="center" lineHeight="1">
+              <PlotIcon mr={2} /> {data.plotSize} m²
             </StatNumber>
           </Stat>
 
-          <Stat>
+          {/* <Stat>
             <StatLabel>Built / Renovated</StatLabel>
             <StatNumber>
               {data.yearOfBuild}/{data.yearOfRenovation || '—'}
             </StatNumber>
-          </Stat>
+          </Stat> */}
           {/* Bedrooms, bathrooms, floor m2, plot m2, built in, renovated in */}
         </Stack>
 
