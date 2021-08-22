@@ -50,6 +50,17 @@ export const GET_HOUSE = gql`
         latitude
         longitude
       }
+      agent {
+        name
+        phoneNumber
+        email
+        headshot
+        agency {
+          website
+          name
+          logo
+        }
+      }
     }
   }
 `;

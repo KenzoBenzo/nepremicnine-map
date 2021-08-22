@@ -3,7 +3,7 @@ import { AppProps } from 'next/app';
 import { ChakraProvider } from '@chakra-ui/react';
 import Head from 'next/head';
 import theme from '../theme';
-import { Layout } from '../components/layout';
+import { Layout } from '../components/templates/layout';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const description =

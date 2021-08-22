@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Marker, Popup } from 'react-map-gl';
 import { Image, Text, Box, useColorModeValue } from '@chakra-ui/react';
-import { eurFormatter } from '../utils/euro-formatter';
+import { eurFormatter } from '../../utils/euro-formatter';
 
 type PopupType = {
   latitude: number;

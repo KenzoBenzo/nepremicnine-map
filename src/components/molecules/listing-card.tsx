@@ -15,8 +15,8 @@ import {
   FloorIcon,
   PlotIcon,
   DrawingPinIcon,
-} from './icons';
-import { eurFormatter } from '../utils/euro-formatter';
+} from '../atoms/icons';
+import { eurFormatter } from '../../utils/euro-formatter';
 import NextLink from 'next/link';
 
 type CardProps = {

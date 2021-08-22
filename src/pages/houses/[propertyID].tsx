@@ -24,7 +24,12 @@ import { faunaClient } from '../../utils/graphql-client';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import { eurFormatter } from '../../utils/euro-formatter';
-import { BathIcon, BedIcon, FloorIcon, PlotIcon } from '../../components/icons';
+import {
+  BathIcon,
+  BedIcon,
+  FloorIcon,
+  PlotIcon,
+} from '../../components/atoms/icons';
 
 const PropertyPage = () => {
   const router = useRouter();
@@ -39,7 +44,8 @@ const PropertyPage = () => {
   if (isValidating && !fetchedData) {
     return (
       <Center h="90vh">
-        <Spinner /> <Text ml={3}>Loading</Text>
+        <Spinner />
+        <Text ml={3}>Loading</Text>
       </Center>
     );
   }
@@ -50,9 +56,12 @@ const PropertyPage = () => {
 
   const data = fetchedData.findHouseByID;
 
-  const DynamicMapWithNoSSR = dynamic(() => import('../../components/map'), {
-    ssr: false,
-  });
+  const DynamicMapWithNoSSR = dynamic(
+    () => import('../../components/organisms/map'),
+    {
+      ssr: false,
+    }
+  );
   return (
     <Stack
       direction={['column-reverse', 'row']}
@@ -88,13 +97,25 @@ const PropertyPage = () => {
             boxShadow="md"
             borderRadius="lg"
           >
-            <Avatar />
-            <Text fontSize="sm" mb={4}>
-              Agent name
-            </Text>
             <Heading as="h2" fontSize="3xl" my={4}>
               {eurFormatter.format(data.totalPrice)}
             </Heading>
+            <Flex align="center" justify="space-between">
+              <Avatar src={data?.agent?.headshot} borderRadius="md" />
+              <Avatar
+                src={data?.agent?.agency?.logo}
+                borderRadius="md"
+                w="auto"
+              />
+            </Flex>
+            <Flex align="center" justify="space-between">
+              <Text fontSize="sm" mb={4}>
+                {data.agent.name}
+              </Text>
+              <Text fontSize="sm" mb={4} textAlign="right">
+                {data.agent.agency.name}
+              </Text>
+            </Flex>
             <ButtonGroup>
               <Button colorScheme="emerald">Book a viewing</Button>
               <Button>Schedule a call</Button>
@@ -166,6 +187,7 @@ const PropertyPage = () => {
         <Heading as="h3" fontSize="xl">
           Description
         </Heading>
+        <Text lineHeight="1.6">{data.description}</Text>
       </Box>
       <Box h="100%" w="100%" maxW={600}>
         <DynamicMapWithNoSSR>{/* Add marker here */}</DynamicMapWithNoSSR>

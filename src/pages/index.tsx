@@ -1,17 +1,20 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
 import { Box, Stack, Text, Center, Spinner } from '@chakra-ui/react';
-import Card from '../components/listing-card';
-import ListingGrid from '../components/listing-grid';
+import Card from '../components/molecules/listing-card';
+import ListingGrid from '../components/organisms/listing-grid';
 import { fetcher } from '../utils/graphql-client';
 import useSWR from 'swr';
 import { GET_PROPERTIES } from '../utils/graphql-operations';
 import { Property } from '../utils/types';
-import { MarkerAndPopup } from '../components/popup-and-marker';
+import { MarkerAndPopup } from '../components/atoms/popup-and-marker';
 
-const DynamicMapWithNoSSR = dynamic(() => import('../components/map'), {
-  ssr: false,
-});
+const DynamicMapWithNoSSR = dynamic(
+  () => import('../components/organisms/map'),
+  {
+    ssr: false,
+  }
+);
 
 const Index = () => {
   const {

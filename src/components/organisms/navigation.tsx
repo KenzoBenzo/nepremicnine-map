@@ -9,10 +9,10 @@ import {
   InputGroup,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { DarkModeSwitch } from './dark-mode-switch';
+import { DarkModeSwitch } from '../atoms/dark-mode-switch';
 import { SearchIcon } from '@chakra-ui/icons';
 import Link from 'next/link';
-import { LogoIcon } from './icons';
+import { LogoIcon } from '../atoms/icons';
 
 const Navigation = () => {
   const iconColor = useColorModeValue('gray.300', 'gray.700');
