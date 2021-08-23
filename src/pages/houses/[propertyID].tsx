@@ -11,12 +11,7 @@ import {
   Avatar,
   Button,
   ButtonGroup,
-  Wrap,
-  WrapItem,
   Divider,
-  Stat,
-  StatLabel,
-  StatNumber,
 } from '@chakra-ui/react';
 import useSWR from 'swr';
 import { GET_HOUSE } from '../../utils/graphql-operations';
@@ -24,12 +19,8 @@ import { faunaClient } from '../../utils/graphql-client';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import { eurFormatter } from '../../utils/euro-formatter';
-import {
-  BathIcon,
-  BedIcon,
-  FloorIcon,
-  PlotIcon,
-} from '../../components/atoms/icons';
+import { StatisticBar } from '../../components/molecules/statistic-bar';
+import { ImageViewer } from '../../components/molecules/image-viewer';
 
 const PropertyPage = () => {
   const router = useRouter();
@@ -72,25 +63,8 @@ const PropertyPage = () => {
     >
       <Box w="100%" mt={8} mx={8}>
         <Flex mb={16}>
-          {/* Image grid */}
-          <Box mr={8}>
-            <img
-              src={data.images[0]}
-              style={{ borderRadius: 8, marginBottom: 8 }}
-            />
-            <Wrap>
-              {data.images.map((image: string, i: number) => (
-                <WrapItem>
-                  <img
-                    style={{ maxWidth: '100px', borderRadius: 6 }}
-                    src={image}
-                    key={i}
-                  />
-                </WrapItem>
-              ))}
-            </Wrap>
-          </Box>
-          {/* Price / CTA / Agent */}
+          <ImageViewer images={data.images} />
+
           <Stack
             p={4}
             backgroundColor={cardColor}
@@ -135,61 +109,20 @@ const PropertyPage = () => {
             {data.title}
           </Heading>
         </Box>
-        <Stack
-          w="full"
-          direction="row"
-          justify="space-between"
-          mb={16}
-          p={4}
-          backgroundColor={cardColor}
-          boxShadow="md"
-          borderRadius="lg"
-        >
-          <Stat maxW="fit-content">
-            <StatLabel>Bedrooms</StatLabel>
-            <StatNumber>
-              <BedIcon mr={2} />
-              {data.bedRooms}
-            </StatNumber>
-          </Stat>
 
-          <Stat maxW="fit-content">
-            <StatLabel>Bathrooms</StatLabel>
-            <StatNumber alignItems="center" lineHeight="1">
-              <BathIcon mr={2} />
-              {data.bathRooms}
-            </StatNumber>
-          </Stat>
-
-          <Stat maxW="fit-content">
-            <StatLabel>Floor size</StatLabel>
-            <StatNumber alignItems="center" lineHeight="1">
-              <FloorIcon mr={2} /> {data.floorSize} m²
-            </StatNumber>
-          </Stat>
-
-          <Stat maxW="fit-content">
-            <StatLabel>Plot size</StatLabel>
-            <StatNumber alignItems="center" lineHeight="1">
-              <PlotIcon mr={2} /> {data.plotSize} m²
-            </StatNumber>
-          </Stat>
-
-          {/* <Stat>
-            <StatLabel>Built / Renovated</StatLabel>
-            <StatNumber>
-              {data.yearOfBuild}/{data.yearOfRenovation || '—'}
-            </StatNumber>
-          </Stat> */}
-          {/* Bedrooms, bathrooms, floor m2, plot m2, built in, renovated in */}
-        </Stack>
+        <StatisticBar
+          bedRooms={data.bedRooms}
+          bathRooms={data.bathRooms}
+          floorSize={data.floorSize}
+          plotSize={data.plotSize}
+        />
 
         <Heading as="h3" fontSize="xl">
           Description
         </Heading>
         <Text lineHeight="1.6">{data.description}</Text>
       </Box>
-      <Box h="100%" w="100%" maxW={600}>
+      <Box pos="sticky" top="0px" h="100%" w="100%" maxW={464}>
         <DynamicMapWithNoSSR>{/* Add marker here */}</DynamicMapWithNoSSR>
         {/* Add overlay with proximity to things here. */}
       </Box>
