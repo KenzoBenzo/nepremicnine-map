@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Button,
@@ -16,10 +16,14 @@ import {
 } from '@chakra-ui/react';
 import SegmentedControl from '../components/atoms/segmented-control';
 import { Crosshair2Icon } from '@radix-ui/react-icons';
+import Link from 'next/link';
 
 const Index = () => {
   const searchInputBackground = useColorModeValue('gray.50', 'gray.800');
   const { colorMode } = useColorMode();
+  const [propertyType, setPropertyType] = useState<string | undefined>(
+    undefined
+  );
 
   return (
     <>
@@ -82,8 +86,12 @@ const Index = () => {
           </FormControl>
           <Divider orientation="vertical" h="72px" />
           <FormControl>
-            <FormLabel htmlFor="type">Property type</FormLabel>
-            <Select id="type" placeholder="Choose a type">
+            <FormLabel htmlFor="propertyType">Property type</FormLabel>
+            <Select
+              id="propertyType"
+              placeholder="Choose a type"
+              onChange={(e) => setPropertyType(e.target.value)}
+            >
               <option value="house">House</option>
               <option value="apartment">Apartment</option>
               <option value="land">Land</option>
@@ -99,9 +107,15 @@ const Index = () => {
               <option value="land">300k-500k</option>
             </Select>
           </FormControl>
-          <Button minW="fit-content" colorScheme="emerald">
-            Search
-          </Button>
+          <Link href={`/${propertyType}s`}>
+            <Button
+              minW="fit-content"
+              colorScheme="emerald"
+              isDisabled={propertyType === undefined}
+            >
+              Search
+            </Button>
+          </Link>
         </Stack>
       </Box>
     </>

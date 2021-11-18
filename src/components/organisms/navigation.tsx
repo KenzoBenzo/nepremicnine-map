@@ -8,14 +8,19 @@ import {
   InputLeftElement,
   InputGroup,
   useColorModeValue,
+  Button,
 } from '@chakra-ui/react';
 import { DarkModeSwitch } from '../atoms/dark-mode-switch';
 import { SearchIcon } from '@chakra-ui/icons';
 import Link from 'next/link';
 import { LogoIcon } from '../atoms/icons';
+import { useRouter } from 'next/router';
 
 const Navigation = () => {
   const iconColor = useColorModeValue('gray.300', 'gray.700');
+  const inactiveColor = useColorModeValue('gray.600', 'gray.400');
+  const router = useRouter();
+
   return (
     <>
       <HStack p={2} justify="space-between" w="100%">
@@ -28,12 +33,39 @@ const Navigation = () => {
         </Flex>
         <HStack spacing={5}>
           <Link href="/">
-            <ChakraLink>Home</ChakraLink>
+            <Button
+              as="a"
+              fontWeight="500"
+              variant="link"
+              color={inactiveColor}
+              colorScheme="emerald"
+              isActive={router.asPath === `/`}
+            >
+              Home
+            </Button>
           </Link>
           <Link href="/create">
-            <ChakraLink>Sellers</ChakraLink>
+            <Button
+              as="a"
+              fontWeight="500"
+              variant="link"
+              color={inactiveColor}
+              colorScheme="emerald"
+              isActive={router.asPath === `/create`}
+            >
+              Sellers
+            </Button>
           </Link>
-          <ChakraLink>Agents</ChakraLink>
+          <Button
+            as="a"
+            fontWeight="500"
+            variant="link"
+            color={inactiveColor}
+            colorScheme="emerald"
+            isActive={router.asPath === `/agents`}
+          >
+            Agents
+          </Button>
         </HStack>
         <HStack>
           <InputGroup minW="250px" size="sm">
