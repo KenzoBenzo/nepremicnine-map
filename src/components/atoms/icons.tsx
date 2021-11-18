@@ -180,9 +180,9 @@ export const LogoIcon = createIcon({
           width="38.4793"
           height="47.3818"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feBlend
             mode="normal"
             in="SourceGraphic"
@@ -202,8 +202,8 @@ export const LogoIcon = createIcon({
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(19.2397 24.0001) rotate(90) scale(16 11.2397)"
         >
-          <stop offset="0.386667" stop-color="#10B981" />
-          <stop offset="1" stop-color="#3B82F6" />
+          <stop offset="0.386667" stopColor="#10B981" />
+          <stop offset="1" stopColor="#3B82F6" />
         </radialGradient>
       </defs>
     </g>

@@ -28,12 +28,12 @@ const Navigation = () => {
         </Flex>
         <HStack spacing={5}>
           <Link href="/">
-            <ChakraLink>Buy</ChakraLink>
+            <ChakraLink>Home</ChakraLink>
           </Link>
           <Link href="/create">
-            <ChakraLink>Sell</ChakraLink>
+            <ChakraLink>Sellers</ChakraLink>
           </Link>
-          <ChakraLink>Rent</ChakraLink>
+          <ChakraLink>Agents</ChakraLink>
         </HStack>
         <HStack>
           <InputGroup minW="250px" size="sm">

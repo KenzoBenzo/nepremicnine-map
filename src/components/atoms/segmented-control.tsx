@@ -13,9 +13,13 @@ const MotionBox = motion(Box);
 
 type SegmentedControlProps = {
   items: Array<string>;
+  connected: boolean;
 };
 
-const SegmentedControl = ({ items }: SegmentedControlProps): JSX.Element => {
+const SegmentedControl = ({
+  items,
+  connected,
+}: SegmentedControlProps): JSX.Element => {
   const [activeItem, setActiveitem] = useState(0);
   const boxBackground = useColorModeValue('gray.100', 'gray.800');
   const borderColor = useColorModeValue('gray.300', 'gray.700');
@@ -28,7 +32,8 @@ const SegmentedControl = ({ items }: SegmentedControlProps): JSX.Element => {
         margin={0}
         padding="3px"
         listStyleType="none"
-        borderRadius="10px"
+        borderTopRadius="10px"
+        borderBottomRadius={connected ? '0px' : '10px'}
         backgroundColor={boxBackground}
       >
         {items.map((item, i) => {
