@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   Divider,
+  Flex,
   FormControl,
   FormLabel,
   Heading,
@@ -11,6 +12,7 @@ import {
   InputLeftElement,
   Select,
   Stack,
+  Text,
   useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react';
@@ -21,9 +23,7 @@ import Link from 'next/link';
 const Index = () => {
   const searchInputBackground = useColorModeValue('gray.50', 'gray.800');
   const { colorMode } = useColorMode();
-  const [propertyType, setPropertyType] = useState<string | undefined>(
-    undefined
-  );
+  const [propertyType, setPropertyType] = useState<string | undefined>('house');
 
   return (
     <>
@@ -90,6 +90,7 @@ const Index = () => {
             <Select
               id="propertyType"
               placeholder="Choose a type"
+              defaultValue={propertyType}
               onChange={(e) => setPropertyType(e.target.value)}
             >
               <option value="house">House</option>
@@ -116,6 +117,65 @@ const Index = () => {
               Search
             </Button>
           </Link>
+        </Stack>
+
+        <Heading
+          as="h2"
+          fontWeight="700"
+          fontSize="3xl"
+          lineHeight="tall"
+          mb={8}
+          mt={32}
+        >
+          Featured properties
+        </Heading>
+        <Stack direction="row" spacing={8} mb={24}>
+          <Flex
+            borderRadius="lg"
+            w="full"
+            h="250px"
+            align="flex-end"
+            p={4}
+            background="url('https://img.nepremicnine.link//slonep_oglasi2/8551669.jpg')"
+            backgroundSize="cover"
+          >
+            <Flex
+              justify="space-between"
+              align="center"
+              backgroundColor={searchInputBackground}
+              borderRadius="md"
+              w="full"
+              p={2}
+            >
+              <Text>Grosuplje</Text>
+              <Button size="sm" colorScheme="emerald" variant="ghost">
+                €300k
+              </Button>
+            </Flex>
+          </Flex>
+          <Flex
+            borderRadius="lg"
+            w="full"
+            h="250px"
+            align="flex-end"
+            p={4}
+            background="url('https://img.nepremicnine.link//slonep_oglasi2/8551669.jpg')"
+            backgroundSize="cover"
+          >
+            <Flex
+              justify="space-between"
+              align="center"
+              backgroundColor={searchInputBackground}
+              borderRadius="md"
+              w="full"
+              p={2}
+            >
+              <Text>Grosuplje</Text>
+              <Button size="sm" colorScheme="emerald" variant="ghost">
+                €300k
+              </Button>
+            </Flex>
+          </Flex>
         </Stack>
       </Box>
     </>
