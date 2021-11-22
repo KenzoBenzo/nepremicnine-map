@@ -31,6 +31,7 @@ export const GET_HOUSE = gql`
   query GET_HOUSE($houseID: ID!) {
     findHouseByID(id: $houseID) {
       _id
+      dateCreated
       title
       naslov
       description
@@ -42,6 +43,7 @@ export const GET_HOUSE = gql`
       bathRooms
       floorSize
       plotSize
+      propertyViews
       totalPrice
       yearOfBuild
       yearOfRenovation

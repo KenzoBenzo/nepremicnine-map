@@ -24,7 +24,7 @@ enum Transaction {
 }
 
 type Agent {
-  name: String!
+  name: String
   email: String
   phoneNumber: String
   headshot: String
@@ -35,7 +35,7 @@ type Agency {
   name: String
   website: String
   logo: String
-  agents: [Agent]! @relation
+  agents: [Agent] @relation
   street: String
   city: String!
   postalCode: Int
@@ -44,15 +44,17 @@ type Agency {
 
 type Location {
   street: String
-  city: String!
+  city: String
   postalCode: Int
   municipality: String
   neighborhood: String
-  longitude: Float!
-  latitude: Float!
+  longitude: Float
+  latitude: Float
 }
 
 type House {
+  "Date and time property was created"
+  dateCreated: Time
   "English title field that summarizes the property."
   title: String @unique
   "Slovenian title field that summarizes the property."
@@ -63,23 +65,27 @@ type House {
   opis: String
   "Where was this listing originally published?"
   referenceLink: String
-  transaction: Transaction!
+  transaction: Transaction
   sold: Boolean
   images: [String]
-  totalPrice: Float!
+  totalPrice: Float
   pricePerMeterSq: Float
-  location: Location!
+  location: Location
   agent: Agent
-  type: HouseType!
+  type: HouseType
   yearOfBuild: Int
   yearOfRenovation: Int
   plotSize: Int
   floorSize: Int
   bedRooms: Int
   bathRooms: Float
+  "How many individuals have viewed this property?"
+  propertyViews: Int
 }
 
 type Appartment {
+  "Date and time property was created"
+  dateCreated: Time
   "English title field that summarizes the property."
   title: String @unique
   "Slovenian title field that summarizes the property."
@@ -90,23 +96,27 @@ type Appartment {
   opis: String
   "Where was this listing originally published?"
   referenceLink: String
-  transaction: Transaction!
+  transaction: Transaction
   sold: Boolean
   images: [String]
-  totalPrice: Float!
+  totalPrice: Float
   pricePerMeterSq: Float
-  location: Location!
+  location: Location
   agent: Agent
-  type: AppartmentType!
+  type: AppartmentType
   yearOfBuild: Int
   yearOfRenovation: Int
   parking: Boolean
   floorSize: Int
   bedRooms: Int
   bathRooms: Float
+  "How many individuals have viewed this property?"
+  propertyViews: Int
 }
 
 type Plot {
+  "Date and time property was created"
+  dateCreated: Time
   "English title field that summarizes the property."
   title: String @unique
   "Slovenian title field that summarizes the property."
@@ -117,16 +127,18 @@ type Plot {
   opis: String
   "Where was this listing originally published?"
   referenceLink: String
-  transaction: Transaction!
+  transaction: Transaction
   sold: Boolean
   images: [String]
-  totalPrice: Float!
+  totalPrice: Float
   pricePerMeterSq: Float
-  location: Location!
+  location: Location
   agent: Agent
-  type: PlotType!
+  type: PlotType
   plotSize: Int
   locationInformation: String
+  "How many individuals have viewed this property?"
+  propertyViews: Int
 }
 
 type Query {
