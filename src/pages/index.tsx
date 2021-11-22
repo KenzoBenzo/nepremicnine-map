@@ -15,6 +15,7 @@ import {
   Text,
   useColorMode,
   useColorModeValue,
+  theme,
 } from '@chakra-ui/react';
 import SegmentedControl from '../components/atoms/segmented-control';
 import { Crosshair2Icon } from '@radix-ui/react-icons';
@@ -79,9 +80,9 @@ const Index = () => {
             <InputGroup>
               <InputLeftElement
                 pointerEvents="none"
-                children={<Crosshair2Icon />}
+                children={<Crosshair2Icon color={theme.colors.green[500]} />}
               />
-              <Input type="text" id="location" />
+              <Input type="text" id="location" minW="300px" />
             </InputGroup>
           </FormControl>
           <Divider orientation="vertical" h="72px" />
@@ -98,16 +99,7 @@ const Index = () => {
               <option value="land">Land</option>
             </Select>
           </FormControl>
-          <Divider orientation="vertical" h="72px" />
-          <FormControl>
-            <FormLabel htmlFor="price">Price range</FormLabel>
-            <Select id="price">
-              <option value="house">50k-100k</option>
-              <option value="apartment">100k-200k</option>
-              <option value="land">200k-300k</option>
-              <option value="land">300k-500k</option>
-            </Select>
-          </FormControl>
+
           <Link href={`/${propertyType}s`}>
             <Button
               minW="fit-content"
@@ -118,6 +110,8 @@ const Index = () => {
             </Button>
           </Link>
         </Stack>
+
+        {/* FEATURED */}
 
         <Heading
           as="h2"
