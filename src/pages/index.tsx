@@ -17,9 +17,9 @@ import {
   useColorModeValue,
   theme,
 } from '@chakra-ui/react';
-import SegmentedControl from '../components/atoms/segmented-control';
 import { Crosshair2Icon } from '@radix-ui/react-icons';
 import Link from 'next/link';
+import SegmentedControl from '@atoms/segmented-control';
 
 const Index = () => {
   const searchInputBackground = useColorModeValue('gray.50', 'gray.800');

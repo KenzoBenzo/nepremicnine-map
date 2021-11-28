@@ -15,19 +15,19 @@ import {
   FloorIcon,
   PlotIcon,
   DrawingPinIcon,
-} from '../atoms/icons';
-import { eurFormatter } from '../../utils/euro-formatter';
+} from '@atoms/icons';
+import { euroFormatter } from '../../utils/euro-formatter';
 import NextLink from 'next/link';
 
 type CardProps = {
-  image: string;
-  title: string;
+  image?: string | null;
+  title?: string | null;
   bed: number;
   bath: number;
   floor: number;
   plot: number;
   pricing: number;
-  location: string;
+  location?: string | null;
   id: string;
 };
 
@@ -56,7 +56,7 @@ const Card = ({
         _hover={{ backgroundColor: hoverBackground }}
       >
         <Image
-          src={image}
+          src={image || ''}
           alt={`Cover image of ${title}`}
           borderRadius="md"
           mb={4}
@@ -65,7 +65,7 @@ const Card = ({
         />
         <Flex justify="space-between" align="center">
           <Text fontSize="xl" fontWeight="800">
-            {eurFormatter.format(pricing)}
+            {euroFormatter.format(pricing)}
           </Text>
           <Badge
             colorScheme="emerald"

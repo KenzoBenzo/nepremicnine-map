@@ -6,7 +6,7 @@ import {
   StatNumber,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { BedIcon, BathIcon, FloorIcon, PlotIcon } from '../atoms/icons';
+import { BedIcon, BathIcon, FloorIcon, PlotIcon } from '@atoms/icons';
 
 type StatisticBarProps = {
   bedRooms: number;

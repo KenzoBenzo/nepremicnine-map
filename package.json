@@ -3,11 +3,18 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "next",
+    "lint": "next lint",
     "build": "next build",
     "start": "next start",
-    "gen:theme-typings": "npx chakra-cli tokens ./src/theme.ts",
-    "postinstall": "yarn gen:theme-typings"
+    "gen:theme-types": "npx chakra-cli tokens ./src/theme.ts",
+    "gen:api-types": "graphql-codegen --config codegen.yml",
+    "postinstall": "yarn gen:theme-types gen:api-types"
   },
+  "pre-commit": [
+    "lint",
+    "gen:api-types",
+    "gen:theme-types"
+  ],
   "dependencies": {
     "@chakra-ui/icons": "^1.1.1",
     "@chakra-ui/react": "^1.7.2",
@@ -27,9 +34,15 @@
   },
   "devDependencies": {
     "@chakra-ui/cli": "^1.6.0",
+    "@graphql-codegen/cli": "2.3.0",
+    "@graphql-codegen/introspection": "2.1.0",
+    "@graphql-codegen/typescript": "2.4.1",
     "@types/node": "^16.11.9",
     "@types/react": "^17.0.35",
     "@types/react-dom": "^17.0.11",
+    "eslint": "8.3.0",
+    "eslint-config-next": "12.0.4",
+    "pre-commit": "^1.2.2",
     "typescript": "^4.5.2"
   },
   "license": "MIT"

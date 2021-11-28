@@ -26,7 +26,7 @@ import {
   CompassIcon,
   DrawingPinIcon,
   HouseIcon,
-} from '../atoms/icons';
+} from '@atoms/icons';
 import { transparentize } from '@chakra-ui/theme-tools';
 
 function RadioCard(props: RadioProps) {

@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect } from 'react';
 import { BoxProps } from '@chakra-ui/react';
-import { MotionBox } from '../atoms/motion';
+import { MotionBox } from '@atoms/motion';
 import {
   HTMLMotionProps,
   MotionProps,

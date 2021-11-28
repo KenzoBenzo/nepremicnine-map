@@ -1,17 +1,15 @@
-import { GraphQLClient } from "graphql-request";
+import { GraphQLClient } from 'graphql-request';
 
 export const faunaClient = () => {
   const context = {
     headers: {
-      authorization:
-        process.env.NEXT_PUBLIC_FAUNA_TOKEN || "",
+      'graphcdn-token': process.env.NEXT_PUBLIC_GRAPHCDN_TOKEN || '',
+      authorization: process.env.NEXT_PUBLIC_FAUNA_TOKEN || '',
+      'X-Schema-Preview': 'partial-update-mutation',
     },
   };
 
-  const client = new GraphQLClient(
-    "https://graphql.fauna.com/graphql",
-    context
-  );
+  const client = new GraphQLClient('https://pravi-dom.graphcdn.app', context);
 
   return client;
 };

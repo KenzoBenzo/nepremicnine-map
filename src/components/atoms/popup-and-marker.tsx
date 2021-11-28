@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Marker, Popup } from 'react-map-gl';
 import { Image, Text, Box, useColorModeValue } from '@chakra-ui/react';
-import { eurFormatter } from '../../utils/euro-formatter';
+import { euroFormatter } from '../../utils/euro-formatter';
 
 type PopupType = {
   latitude: number;
   longitude: number;
-  image: string;
-  title: string;
+  image?: string | null;
+  title?: string | null;
   price: number;
 };
 
@@ -36,7 +36,7 @@ export const MarkerAndPopup = ({
             fontWeight="700"
             cursor="pointer"
           >
-            {eurFormatter.format(price)}
+            {euroFormatter.format(price)}
           </Box>
           <Box
             w={0}
@@ -68,8 +68,8 @@ export const MarkerAndPopup = ({
         >
           <Box p={2}>
             <Image
-              src={image}
-              alt={title}
+              src={image || ''}
+              alt={`Cover image of ${title}`}
               borderRadius="md"
               mb={4}
               maxW="375px"

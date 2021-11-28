@@ -1,6 +1,6 @@
 import React from 'react';
-import { CreatePropertyForm } from '../components/molecules/create-form';
-import { UploadSingleImage } from '../components/molecules/image-input';
+import { CreatePropertyForm } from '@molecules/create-form';
+import { UploadSingleImage } from '@molecules/image-input';
 
 const CreatePage = () => {
   return (

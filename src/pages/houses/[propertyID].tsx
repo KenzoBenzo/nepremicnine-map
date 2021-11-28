@@ -15,16 +15,16 @@ import {
   Link as ChakraLink,
 } from '@chakra-ui/react';
 import useSWR from 'swr';
-import { GET_HOUSE } from '../../utils/graphql-operations';
-import { faunaClient } from '../../utils/graphql-client';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
-import { eurFormatter } from '../../utils/euro-formatter';
-import { StatisticBar } from '../../components/molecules/statistic-bar';
-import { ImageViewer } from '../../components/molecules/image-viewer';
-import { ArrowLeftIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
-import { DateFormatter } from '../../utils/date-formatter';
+import { ArrowLeftIcon } from '@radix-ui/react-icons';
+import { StatisticBar } from '@molecules/statistic-bar';
+import { ImageViewer } from '@molecules/image-viewer';
+import { GET_HOUSE } from '../../utils/graphql-operations';
+import { faunaClient } from '../../utils/graphql-client';
+import { euroFormatter } from '../../utils/euro-formatter';
+import { dateFormatter } from '../../utils/date-formatter';
 
 const PropertyPage = () => {
   const router = useRouter();
@@ -85,7 +85,7 @@ const PropertyPage = () => {
               borderRadius="lg"
             >
               <Heading as="h2" fontSize="3xl" my={4}>
-                {eurFormatter.format(data.totalPrice)}
+                {euroFormatter.format(data.totalPrice)}
               </Heading>
               <Flex align="center" justify="space-between">
                 <Avatar src={data?.agent?.headshot} borderRadius="md" />
@@ -111,7 +111,7 @@ const PropertyPage = () => {
               <Divider py={4} />
               {/* Posted on */}
               <Text fontSize="sm" mb={4}>
-                Uploaded {DateFormatter(data.dateCreated)}
+                Uploaded {dateFormatter(data.dateCreated)}
               </Text>
               <Text fontSize="sm" mb={4} fontStyle="italic">
                 {data.propertyViews} viewings of this listing.
