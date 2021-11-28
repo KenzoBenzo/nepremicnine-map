@@ -182,10 +182,9 @@ export const CreatePropertyForm = () => {
       <FormControl>
         <FormLabel>Where is this property located?</FormLabel>
         <InputGroup>
-          <InputLeftElement
-            pointerEvents="none"
-            children={<DrawingPinIcon />}
-          />
+          <InputLeftElement pointerEvents="none">
+            <DrawingPinIcon />
+          </InputLeftElement>
           <Input type="address" placeholder="Start typing an address" />
         </InputGroup>
       </FormControl>

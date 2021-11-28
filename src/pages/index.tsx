@@ -78,10 +78,9 @@ const Index = () => {
           <FormControl>
             <FormLabel htmlFor="location">Location</FormLabel>
             <InputGroup>
-              <InputLeftElement
-                pointerEvents="none"
-                children={<Crosshair2Icon color={theme.colors.green[500]} />}
-              />
+              <InputLeftElement pointerEvents="none">
+                <Crosshair2Icon color={theme.colors.green[500]} />
+              </InputLeftElement>
               <Input type="text" id="location" minW="300px" />
             </InputGroup>
           </FormControl>
@@ -100,7 +99,7 @@ const Index = () => {
             </Select>
           </FormControl>
 
-          <Link href={`/${propertyType}s`}>
+          <Link href={`/${propertyType}s`} passHref>
             <Button
               minW="fit-content"
               colorScheme="emerald"
