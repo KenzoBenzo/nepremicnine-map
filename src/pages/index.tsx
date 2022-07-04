@@ -1,87 +1,177 @@
-import React from 'react';
-import { Layout } from '../components/layout';
-import dynamic from 'next/dynamic';
-import { Box, Stack, Text, Center, Spinner } from '@chakra-ui/react';
-import Card from '../components/listing-card';
-import ListingGrid from '../components/listing-grid';
-import { fetcher } from '../utils/graphql-client';
-import useSWR from 'swr';
-import { GET_PROPERTIES } from '../utils/graphql-operations';
-import { Property } from '../utils/types';
-import { MarkerAndPopup } from '../components/popup-and-marker';
-
-const DynamicMapWithNoSSR = dynamic(() => import('../components/map'), {
-  ssr: false,
-});
+import React, { useState } from 'react';
+import {
+  Box,
+  Button,
+  Divider,
+  Flex,
+  FormControl,
+  FormLabel,
+  Heading,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  Select,
+  Stack,
+  Text,
+  useColorMode,
+  useColorModeValue,
+  theme,
+} from '@chakra-ui/react';
+import { Crosshair2Icon } from '@radix-ui/react-icons';
+import Link from 'next/link';
+import SegmentedControl from '@atoms/segmented-control';
 
 const Index = () => {
-  const {
-    data: fetchedData,
-    error,
-    isValidating,
-  } = useSWR(GET_PROPERTIES, fetcher);
-
-  if (error) {
-    return <Text color="red.500">{JSON.stringify(error, null, 2)}</Text>;
-  }
-
-  if (isValidating && !fetchedData) {
-    return (
-      <Center h="90vh">
-        <Spinner /> <Text ml={3}>Loading</Text>
-      </Center>
-    );
-  }
+  const searchInputBackground = useColorModeValue('gray.50', 'gray.800');
+  const { colorMode } = useColorMode();
+  const [propertyType, setPropertyType] = useState<string | undefined>('house');
 
   return (
-    <Layout>
-      <Stack
-        direction={['column-reverse', 'row']}
-        spacing={0}
-        h="100vh"
+    <>
+      <Box
+        mt={20}
+        background={`url('https://media.graphcms.com/hofevqGT6CWIlQIogRAV'), linear-gradient(to bottom right, ${
+          colorMode === 'light' ? 'rgb(236, 253, 245)' : 'rgba(6, 78, 59, .5)'
+        }, ${
+          colorMode === 'light' ? 'rgb(167, 243, 208)' : 'rgba(4, 120, 87, .5)'
+        })`}
+        /*background={`url('https://media.graphcms.com/hofevqGT6CWIlQIogRAV'), linear-gradient(to bottom right, ${
+          colorMode === 'light' ? 'rgb(239, 246, 255)' : 'rgba(29, 78, 216, .2)'
+        }, ${
+          colorMode === 'light' ? 'rgb(191, 219, 254)' : 'rgba(30, 58, 138, .2)'
+        })`}*/
+        backgroundRepeat="no-repeat"
+        backgroundPosition="right bottom"
         w="100%"
-        overflow="auto"
+        maxW="1000px"
+        minH="350px"
+        borderRadius="lg"
+        overflow="hidden"
       >
-        <Box w="100%" mx={8}>
-          <ListingGrid>
-            {fetchedData?.houses?.data?.map(
-              (house: Property, index: number) => (
-                <Card
-                  key={index}
-                  image={house.images[0]}
-                  title={house.title}
-                  bed={house.bedRooms || 0}
-                  bath={house.bathRooms || 0}
-                  floor={house.floorSize || 0}
-                  plot={house.plotSize || 0}
-                  pricing={house.totalPrice}
-                  location={house.location.neighborhood}
-                />
-              )
-            )}
-          </ListingGrid>
-        </Box>
+        <Heading
+          as="h1"
+          m={8}
+          fontWeight="900"
+          fontSize="4xl"
+          maxW={['none', '45%']}
+          lineHeight="tall"
+          backdropFilter="blur(2px)"
+          borderRadius="lg"
+        >
+          Easy way to find the perfect property
+        </Heading>
+      </Box>
 
-        <Box h="100%" w="100%" maxW={600}>
-          <DynamicMapWithNoSSR>
-            <>
-              {fetchedData?.houses?.data?.map(
-                (property: Property, index: number) => (
-                  <MarkerAndPopup
-                    key={index}
-                    latitude={property.location.latitude}
-                    longitude={property.location.longitude}
-                    image={property.images[0]}
-                    title={property.title}
-                    price={property.totalPrice}
-                  />
-                )
-              )}
-            </>
-          </DynamicMapWithNoSSR>
-        </Box>
-      </Stack>
-    </Layout>
+      <Box mt={-24} mx="auto">
+        <SegmentedControl connected items={['Buy', 'Rent']} />
+        <Stack
+          direction="row"
+          backgroundColor={searchInputBackground}
+          borderBottomRadius="lg"
+          borderTopRightRadius="lg"
+          maxW="800px"
+          p={6}
+          boxShadow="lg"
+          spacing={6}
+          align="flex-end"
+        >
+          <FormControl>
+            <FormLabel htmlFor="location">Location</FormLabel>
+            <InputGroup>
+              <InputLeftElement pointerEvents="none">
+                <Crosshair2Icon color={theme.colors.green[500]} />
+              </InputLeftElement>
+              <Input type="text" id="location" minW="300px" />
+            </InputGroup>
+          </FormControl>
+          <Divider orientation="vertical" h="72px" />
+          <FormControl>
+            <FormLabel htmlFor="propertyType">Property type</FormLabel>
+            <Select
+              id="propertyType"
+              placeholder="Choose a type"
+              defaultValue={propertyType}
+              onChange={(e) => setPropertyType(e.target.value)}
+            >
+              <option value="house">House</option>
+              <option value="apartment">Apartment</option>
+              <option value="land">Land</option>
+            </Select>
+          </FormControl>
+
+          <Link href={`/${propertyType}s`} passHref>
+            <Button
+              minW="fit-content"
+              colorScheme="emerald"
+              isDisabled={propertyType === undefined}
+            >
+              Search
+            </Button>
+          </Link>
+        </Stack>
+
+        {/* FEATURED */}
+
+        <Heading
+          as="h2"
+          fontWeight="700"
+          fontSize="3xl"
+          lineHeight="tall"
+          mb={8}
+          mt={32}
+        >
+          Featured properties
+        </Heading>
+        <Stack direction="row" spacing={8} mb={24}>
+          <Flex
+            borderRadius="lg"
+            w="full"
+            h="250px"
+            align="flex-end"
+            p={4}
+            background="url('https://img.nepremicnine.link//slonep_oglasi2/8551669.jpg')"
+            backgroundSize="cover"
+          >
+            <Flex
+              justify="space-between"
+              align="center"
+              backgroundColor={searchInputBackground}
+              borderRadius="md"
+              w="full"
+              p={2}
+            >
+              <Text>Grosuplje</Text>
+              <Button size="sm" colorScheme="emerald" variant="ghost">
+                €300k
+              </Button>
+            </Flex>
+          </Flex>
+          <Flex
+            borderRadius="lg"
+            w="full"
+            h="250px"
+            align="flex-end"
+            p={4}
+            background="url('https://img.nepremicnine.link//slonep_oglasi2/8551669.jpg')"
+            backgroundSize="cover"
+          >
+            <Flex
+              justify="space-between"
+              align="center"
+              backgroundColor={searchInputBackground}
+              borderRadius="md"
+              w="full"
+              p={2}
+            >
+              <Text>Grosuplje</Text>
+              <Button size="sm" colorScheme="emerald" variant="ghost">
+                €300k
+              </Button>
+            </Flex>
+          </Flex>
+        </Stack>
+      </Box>
+    </>
   );
 };
 

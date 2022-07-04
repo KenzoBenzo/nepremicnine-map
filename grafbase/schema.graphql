@@ -53,6 +53,8 @@ type Location {
 }
 
 type House {
+  "Date and time property was created"
+  dateCreated: String!
   "English title field that summarizes the property."
   title: String @unique
   "Slovenian title field that summarizes the property."
@@ -77,9 +79,13 @@ type House {
   floorSize: Int
   bedRooms: Int
   bathRooms: Float
+  "How many individuals have viewed this property?"
+  propertyViews: Int
 }
 
 type Appartment {
+  "Date and time property was created"
+  dateCreated: String!
   "English title field that summarizes the property."
   title: String @unique
   "Slovenian title field that summarizes the property."
@@ -104,9 +110,13 @@ type Appartment {
   floorSize: Int
   bedRooms: Int
   bathRooms: Float
+  "How many individuals have viewed this property?"
+  propertyViews: Int
 }
 
 type Plot {
+  "Date and time property was created"
+  dateCreated: String!
   "English title field that summarizes the property."
   title: String @unique
   "Slovenian title field that summarizes the property."
@@ -127,6 +137,8 @@ type Plot {
   type: PlotType!
   plotSize: Int
   locationInformation: String
+  "How many individuals have viewed this property?"
+  propertyViews: Int
 }
 
 type Query {

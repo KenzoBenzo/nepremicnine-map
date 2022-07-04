@@ -1,33 +1,49 @@
 {
-	"name": "nepremicnine-map",
-	"version": "1.0.0",
-	"scripts": {
-		"dev": "next",
-		"build": "next build",
-		"start": "next start"
-	},
-	"dependencies": {
-		"@chakra-ui/icons": "^1.1.0",
-		"@chakra-ui/react": "^1.7.0",
-		"@chakra-ui/theme-tools": "^1.3.0",
-		"@emotion/react": "^11.5.0",
-		"@emotion/styled": "^11.3.0",
-		"framer-motion": "^5.3.0",
-		"graphql": "^16.0.1",
-		"graphql-request": "^3.6.1",
-		"next": "^12.0.3",
-		"next-s3-upload": "^0.1.7",
-		"react": "^17.0.2",
-		"react-dom": "^17.0.2",
-		"react-map-gl": "^6.1.17",
-		"swr": "^1.0.1"
-	},
-	"devDependencies": {
-		"@types/node": "^16.11.7",
-		"@types/react": "^17.0.34",
-		"@types/react-dom": "^17.0.11",
-		"typescript": "^4.4.4",
-		"yarn-upgrade-all": "^0.5.4"
-	},
-	"license": "MIT"
+  "name": "nepremicnine-map",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next",
+    "lint": "next lint",
+    "build": "next build",
+    "start": "next start",
+    "gen:theme-types": "npx chakra-cli tokens ./src/theme.ts",
+    "gen:api-types": "graphql-codegen --config codegen.yml",
+    "postinstall": "yarn gen:theme-types gen:api-types"
+  },
+  "pre-commit": [
+    "lint",
+    "gen:api-types",
+    "gen:theme-types"
+  ],
+  "dependencies": {
+    "@chakra-ui/icons": "^1.1.1",
+    "@chakra-ui/react": "^1.7.2",
+    "@chakra-ui/theme-tools": "^1.3.1",
+    "@emotion/react": "^11.6.0",
+    "@emotion/styled": "^11.6.0",
+    "@radix-ui/react-icons": "^1.0.3",
+    "framer-motion": "^5.3.1",
+    "graphql": "^16.0.1",
+    "graphql-request": "^3.6.1",
+    "next": "^12.0.4",
+    "next-s3-upload": "^0.1.7",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-map-gl": "^6.1.17",
+    "swr": "^1.0.1"
+  },
+  "devDependencies": {
+    "@chakra-ui/cli": "^1.6.0",
+    "@graphql-codegen/cli": "2.3.0",
+    "@graphql-codegen/introspection": "2.1.0",
+    "@graphql-codegen/typescript": "2.4.1",
+    "@types/node": "^16.11.9",
+    "@types/react": "^17.0.35",
+    "@types/react-dom": "^17.0.11",
+    "eslint": "<8.0.0",
+    "eslint-config-next": "12.0.4",
+    "pre-commit": "^1.2.2",
+    "typescript": "^4.5.2"
+  },
+  "license": "MIT"
 }

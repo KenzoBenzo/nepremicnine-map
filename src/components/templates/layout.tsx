@@ -1,6 +1,6 @@
 import React from 'react';
 import { Flex, FlexProps } from '@chakra-ui/react';
-import Navigation from './navigation';
+import Navigation from '@organisms/navigation';
 
 export const Layout = (props: FlexProps) => {
   return (

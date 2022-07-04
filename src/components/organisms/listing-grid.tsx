@@ -1,17 +1,16 @@
 import React, { ReactNode } from "react";
 import { SimpleGrid } from "@chakra-ui/react";
 
-
 type GridProps = {
-  children: ReactNode
-}
+	children: ReactNode;
+};
 
 const ListingGrid = ({ children }: GridProps) => {
-  return (
-    <SimpleGrid columns={4} minChildWidth="275px" spacing={8} my={8}>
-      {children}
-    </SimpleGrid>
-  );
+	return (
+		<SimpleGrid columns={4} minChildWidth="275px" spacing={8} mb={8}>
+			{children}
+		</SimpleGrid>
+	);
 };
 
 export default ListingGrid;

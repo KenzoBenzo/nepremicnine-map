@@ -26,3 +26,43 @@ export const GET_PROPERTIES = gql`
     }
   }
 `;
+
+export const GET_HOUSE = gql`
+  query GET_HOUSE($houseID: ID!) {
+    findHouseByID(id: $houseID) {
+      _id
+      dateCreated
+      title
+      naslov
+      description
+      opis
+      images
+      type
+      transaction
+      bedRooms
+      bathRooms
+      floorSize
+      plotSize
+      propertyViews
+      totalPrice
+      yearOfBuild
+      yearOfRenovation
+      location {
+        neighborhood
+        latitude
+        longitude
+      }
+      agent {
+        name
+        phoneNumber
+        email
+        headshot
+        agency {
+          website
+          name
+          logo
+        }
+      }
+    }
+  }
+`;

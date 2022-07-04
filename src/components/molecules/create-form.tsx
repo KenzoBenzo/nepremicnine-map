@@ -26,7 +26,7 @@ import {
   CompassIcon,
   DrawingPinIcon,
   HouseIcon,
-} from './icons';
+} from '@atoms/icons';
 import { transparentize } from '@chakra-ui/theme-tools';
 
 function RadioCard(props: RadioProps) {
@@ -182,10 +182,9 @@ export const CreatePropertyForm = () => {
       <FormControl>
         <FormLabel>Where is this property located?</FormLabel>
         <InputGroup>
-          <InputLeftElement
-            pointerEvents="none"
-            children={<DrawingPinIcon />}
-          />
+          <InputLeftElement pointerEvents="none">
+            <DrawingPinIcon />
+          </InputLeftElement>
           <Input type="address" placeholder="Start typing an address" />
         </InputGroup>
       </FormControl>
