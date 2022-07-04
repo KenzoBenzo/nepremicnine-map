@@ -373,6 +373,18 @@ export type Mutation = {
   deleteLocation?: Maybe<Location>;
   /** Delete an existing document in the collection of 'Plot' */
   deletePlot?: Maybe<Plot>;
+  /** Partially updates an existing document in the collection of 'Agency'. It only modifies the values that are specified in the arguments. During execution, it verifies that required fields are not set to 'null'. */
+  partialUpdateAgency?: Maybe<Agency>;
+  /** Partially updates an existing document in the collection of 'Agent'. It only modifies the values that are specified in the arguments. During execution, it verifies that required fields are not set to 'null'. */
+  partialUpdateAgent?: Maybe<Agent>;
+  /** Partially updates an existing document in the collection of 'Appartment'. It only modifies the values that are specified in the arguments. During execution, it verifies that required fields are not set to 'null'. */
+  partialUpdateAppartment?: Maybe<Appartment>;
+  /** Partially updates an existing document in the collection of 'House'. It only modifies the values that are specified in the arguments. During execution, it verifies that required fields are not set to 'null'. */
+  partialUpdateHouse?: Maybe<House>;
+  /** Partially updates an existing document in the collection of 'Location'. It only modifies the values that are specified in the arguments. During execution, it verifies that required fields are not set to 'null'. */
+  partialUpdateLocation?: Maybe<Location>;
+  /** Partially updates an existing document in the collection of 'Plot'. It only modifies the values that are specified in the arguments. During execution, it verifies that required fields are not set to 'null'. */
+  partialUpdatePlot?: Maybe<Plot>;
   /** Update an existing document in the collection of 'Agency' */
   updateAgency?: Maybe<Agency>;
   /** Update an existing document in the collection of 'Agent' */
@@ -448,6 +460,42 @@ export type MutationDeletePlotArgs = {
 };
 
 
+export type MutationPartialUpdateAgencyArgs = {
+  data: PartialUpdateAgencyInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationPartialUpdateAgentArgs = {
+  data: PartialUpdateAgentInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationPartialUpdateAppartmentArgs = {
+  data: PartialUpdateAppartmentInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationPartialUpdateHouseArgs = {
+  data: PartialUpdateHouseInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationPartialUpdateLocationArgs = {
+  data: PartialUpdateLocationInput;
+  id: Scalars['ID'];
+};
+
+
+export type MutationPartialUpdatePlotArgs = {
+  data: PartialUpdatePlotInput;
+  id: Scalars['ID'];
+};
+
+
 export type MutationUpdateAgencyArgs = {
   data: AgencyInput;
   id: Scalars['ID'];
@@ -481,6 +529,130 @@ export type MutationUpdateLocationArgs = {
 export type MutationUpdatePlotArgs = {
   data: PlotInput;
   id: Scalars['ID'];
+};
+
+/** 'Agency' input values */
+export type PartialUpdateAgencyInput = {
+  agents?: InputMaybe<AgencyAgentsRelation>;
+  city?: InputMaybe<Scalars['String']>;
+  logo?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  phoneNumber?: InputMaybe<Scalars['String']>;
+  postalCode?: InputMaybe<Scalars['Int']>;
+  street?: InputMaybe<Scalars['String']>;
+  website?: InputMaybe<Scalars['String']>;
+};
+
+/** 'Agent' input values */
+export type PartialUpdateAgentInput = {
+  agency?: InputMaybe<AgentAgencyRelation>;
+  email?: InputMaybe<Scalars['String']>;
+  headshot?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  phoneNumber?: InputMaybe<Scalars['String']>;
+};
+
+/** 'Appartment' input values */
+export type PartialUpdateAppartmentInput = {
+  agent?: InputMaybe<AppartmentAgentRelation>;
+  bathRooms?: InputMaybe<Scalars['Float']>;
+  bedRooms?: InputMaybe<Scalars['Int']>;
+  /** Date and time property was created */
+  dateCreated?: InputMaybe<Scalars['Time']>;
+  /** English description field that describes the property. */
+  description?: InputMaybe<Scalars['String']>;
+  floorSize?: InputMaybe<Scalars['Int']>;
+  images?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  location?: InputMaybe<AppartmentLocationRelation>;
+  /** Slovenian title field that summarizes the property. */
+  naslov?: InputMaybe<Scalars['String']>;
+  /** Slovenian description field that describes the property. */
+  opis?: InputMaybe<Scalars['String']>;
+  parking?: InputMaybe<Scalars['Boolean']>;
+  pricePerMeterSq?: InputMaybe<Scalars['Float']>;
+  /** How many individuals have viewed this property? */
+  propertyViews?: InputMaybe<Scalars['Int']>;
+  /** Where was this listing originally published? */
+  referenceLink?: InputMaybe<Scalars['String']>;
+  sold?: InputMaybe<Scalars['Boolean']>;
+  /** English title field that summarizes the property. */
+  title?: InputMaybe<Scalars['String']>;
+  totalPrice?: InputMaybe<Scalars['Float']>;
+  transaction?: InputMaybe<Transaction>;
+  type?: InputMaybe<AppartmentType>;
+  yearOfBuild?: InputMaybe<Scalars['Int']>;
+  yearOfRenovation?: InputMaybe<Scalars['Int']>;
+};
+
+/** 'House' input values */
+export type PartialUpdateHouseInput = {
+  agent?: InputMaybe<HouseAgentRelation>;
+  bathRooms?: InputMaybe<Scalars['Float']>;
+  bedRooms?: InputMaybe<Scalars['Int']>;
+  /** Date and time property was created */
+  dateCreated?: InputMaybe<Scalars['Time']>;
+  /** English description field that describes the property. */
+  description?: InputMaybe<Scalars['String']>;
+  floorSize?: InputMaybe<Scalars['Int']>;
+  images?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  location?: InputMaybe<HouseLocationRelation>;
+  /** Slovenian title field that summarizes the property. */
+  naslov?: InputMaybe<Scalars['String']>;
+  /** Slovenian description field that describes the property. */
+  opis?: InputMaybe<Scalars['String']>;
+  plotSize?: InputMaybe<Scalars['Int']>;
+  pricePerMeterSq?: InputMaybe<Scalars['Float']>;
+  /** How many individuals have viewed this property? */
+  propertyViews?: InputMaybe<Scalars['Int']>;
+  /** Where was this listing originally published? */
+  referenceLink?: InputMaybe<Scalars['String']>;
+  sold?: InputMaybe<Scalars['Boolean']>;
+  /** English title field that summarizes the property. */
+  title?: InputMaybe<Scalars['String']>;
+  totalPrice?: InputMaybe<Scalars['Float']>;
+  transaction?: InputMaybe<Transaction>;
+  type?: InputMaybe<HouseType>;
+  yearOfBuild?: InputMaybe<Scalars['Int']>;
+  yearOfRenovation?: InputMaybe<Scalars['Int']>;
+};
+
+/** 'Location' input values */
+export type PartialUpdateLocationInput = {
+  city?: InputMaybe<Scalars['String']>;
+  latitude?: InputMaybe<Scalars['Float']>;
+  longitude?: InputMaybe<Scalars['Float']>;
+  municipality?: InputMaybe<Scalars['String']>;
+  neighborhood?: InputMaybe<Scalars['String']>;
+  postalCode?: InputMaybe<Scalars['Int']>;
+  street?: InputMaybe<Scalars['String']>;
+};
+
+/** 'Plot' input values */
+export type PartialUpdatePlotInput = {
+  agent?: InputMaybe<PlotAgentRelation>;
+  /** Date and time property was created */
+  dateCreated?: InputMaybe<Scalars['Time']>;
+  /** English description field that describes the property. */
+  description?: InputMaybe<Scalars['String']>;
+  images?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  location?: InputMaybe<PlotLocationRelation>;
+  locationInformation?: InputMaybe<Scalars['String']>;
+  /** Slovenian title field that summarizes the property. */
+  naslov?: InputMaybe<Scalars['String']>;
+  /** Slovenian description field that describes the property. */
+  opis?: InputMaybe<Scalars['String']>;
+  plotSize?: InputMaybe<Scalars['Int']>;
+  pricePerMeterSq?: InputMaybe<Scalars['Float']>;
+  /** How many individuals have viewed this property? */
+  propertyViews?: InputMaybe<Scalars['Int']>;
+  /** Where was this listing originally published? */
+  referenceLink?: InputMaybe<Scalars['String']>;
+  sold?: InputMaybe<Scalars['Boolean']>;
+  /** English title field that summarizes the property. */
+  title?: InputMaybe<Scalars['String']>;
+  totalPrice?: InputMaybe<Scalars['Float']>;
+  transaction?: InputMaybe<Transaction>;
+  type?: InputMaybe<PlotType>;
 };
 
 export type Plot = {
