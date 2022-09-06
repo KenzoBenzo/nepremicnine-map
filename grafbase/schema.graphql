@@ -35,7 +35,7 @@ type Agency {
   name: String
   website: String
   logo: String
-  agents: [Agent]! @relation
+  agents: Agent[]! @relation
   street: String
   city: String!
   postalCode: Int
@@ -54,9 +54,9 @@ type Location {
 
 type House {
   "English title field that summarizes the property."
-  title: String @unique
+  title: String! @unique
   "Slovenian title field that summarizes the property."
-  naslov: String @unique
+  naslov: String! @unique
   "English description field that describes the property."
   description: String
   "Slovenian description field that describes the property."
@@ -65,7 +65,7 @@ type House {
   referenceLink: String
   transaction: Transaction!
   sold: Boolean
-  images: [String]
+  images: String[]
   totalPrice: Float!
   pricePerMeterSq: Float
   location: Location!
@@ -81,9 +81,9 @@ type House {
 
 type Appartment {
   "English title field that summarizes the property."
-  title: String @unique
+  title: String! @unique
   "Slovenian title field that summarizes the property."
-  naslov: String @unique
+  naslov: String! @unique
   "English description field that describes the property."
   description: String
   "Slovenian description field that describes the property."
@@ -92,7 +92,7 @@ type Appartment {
   referenceLink: String
   transaction: Transaction!
   sold: Boolean
-  images: [String]
+  images: String[]
   totalPrice: Float!
   pricePerMeterSq: Float
   location: Location!
@@ -108,9 +108,9 @@ type Appartment {
 
 type Plot {
   "English title field that summarizes the property."
-  title: String @unique
+  title: String! @unique
   "Slovenian title field that summarizes the property."
-  naslov: String @unique
+  naslov: String! @unique
   "English description field that describes the property."
   description: String
   "Slovenian description field that describes the property."
@@ -119,7 +119,7 @@ type Plot {
   referenceLink: String
   transaction: Transaction!
   sold: Boolean
-  images: [String]
+  images: String[]
   totalPrice: Float!
   pricePerMeterSq: Float
   location: Location!
@@ -130,8 +130,8 @@ type Plot {
 }
 
 type Query {
-  houses: [House]
-  appartments: [Appartment]
-  plots: [Plot]
-  agencies: [Agency]
+  houses: House[]
+  appartments: Appartment[]
+  plots: Plot[]
+  agencies: Agency[]
 }
