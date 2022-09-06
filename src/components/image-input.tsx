@@ -26,7 +26,6 @@ export const UploadSingleImage = () => {
 
       {imageUrl && (
         <div>
-          {/* @ts-expect-error */}
           <Image src={imageUrl} width={width} height={height} />
           <div>{imageUrl}</div>
           <div>
