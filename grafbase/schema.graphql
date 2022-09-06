@@ -35,7 +35,7 @@ type Agency @model {
   name: String
   website: String
   logo: String
-  agents: Agent[]!
+  agents: [Agent]!
   street: String
   city: String!
   postalCode: Int
@@ -65,7 +65,7 @@ type House @model {
   referenceLink: String
   transaction: Transaction!
   sold: Boolean
-  images: String[]
+  images: [String]
   totalPrice: Float!
   pricePerMeterSq: Float
   location: Location!
@@ -92,7 +92,7 @@ type Appartment @model {
   referenceLink: String
   transaction: Transaction!
   sold: Boolean
-  images: String[]
+  images: [String]
   totalPrice: Float!
   pricePerMeterSq: Float
   location: Location!
@@ -119,7 +119,7 @@ type Plot @model {
   referenceLink: String
   transaction: Transaction!
   sold: Boolean
-  images: String[]
+  images: [String]
   totalPrice: Float!
   pricePerMeterSq: Float
   location: Location!
@@ -130,8 +130,8 @@ type Plot @model {
 }
 
 type Query {
-  houses: House[]
-  appartments: Appartment[]
-  plots: Plot[]
-  agencies: Agency[]
+  houses: [House]
+  appartments: [Appartment]
+  plots: [Plot]
+  agencies: [Agency]
 }
