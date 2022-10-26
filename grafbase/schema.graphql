@@ -24,6 +24,7 @@ enum Transaction {
 }
 
 type Agent @model {
+  id: ID!
   name: String!
   email: String
   phoneNumber: String
@@ -32,6 +33,7 @@ type Agent @model {
 }
 
 type Agency @model {
+  id: ID!
   name: String
   website: String
   logo: String
@@ -43,6 +45,7 @@ type Agency @model {
 }
 
 type Location @model {
+  id: ID!
   street: String
   city: String!
   postalCode: Int
@@ -53,6 +56,7 @@ type Location @model {
 }
 
 type House @model {
+  id: ID!
   "English title field that summarizes the property."
   title: String! @unique
   "Slovenian title field that summarizes the property."
@@ -80,6 +84,7 @@ type House @model {
 }
 
 type Appartment @model {
+  id: ID!
   "English title field that summarizes the property."
   title: String! @unique
   "Slovenian title field that summarizes the property."
@@ -107,6 +112,7 @@ type Appartment @model {
 }
 
 type Plot @model {
+  id: ID!
   "English title field that summarizes the property."
   title: String! @unique
   "Slovenian title field that summarizes the property."
