@@ -1,17 +1,19 @@
 import { GraphQLClient } from 'graphql-request';
 
-export const faunaClient = () => {
+export const graphQLClient = () => {
   const context = {
     headers: {
-      'graphcdn-token': process.env.NEXT_PUBLIC_GRAPHCDN_TOKEN || '',
-      authorization: process.env.NEXT_PUBLIC_FAUNA_TOKEN || '',
-      'X-Schema-Preview': 'partial-update-mutation',
+      'content-type': 'application/json',
+      'x-api-key': process.env.NEXT_PUBLIC_GRAFBASE_TOKEN || '',
     },
   };
 
-  const client = new GraphQLClient('https://pravi-dom.graphcdn.app', context);
+  const client = new GraphQLClient(
+    'https://nepremicnine-map-main-kenzobenzo.grafbase.app/graphql',
+    context
+  );
 
   return client;
 };
 
-export const fetcher = (query: string) => faunaClient().request(query);
+export const fetcher = (query: string) => graphQLClient().request(query);

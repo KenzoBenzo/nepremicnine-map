@@ -22,7 +22,7 @@ import { ArrowLeftIcon } from '@radix-ui/react-icons';
 import { StatisticBar } from '@molecules/statistic-bar';
 import { ImageViewer } from '@molecules/image-viewer';
 import { GET_HOUSE } from '../../utils/graphql-operations';
-import { faunaClient } from '../../utils/graphql-client';
+import { graphQLClient } from '../../utils/graphql-client';
 import { euroFormatter } from '../../utils/euro-formatter';
 import { dateFormatter } from '../../utils/date-formatter';
 
@@ -33,7 +33,7 @@ const PropertyPage = () => {
 
   const { propertyID } = router.query;
   const fetcher = (query: string) =>
-    faunaClient().request(query, { houseID: propertyID });
+    graphQLClient().request(query, { houseID: propertyID });
   const { data: fetchedData, error, isValidating } = useSWR(GET_HOUSE, fetcher);
 
   if (isValidating && !fetchedData) {

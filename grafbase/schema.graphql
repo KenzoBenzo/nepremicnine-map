@@ -23,7 +23,7 @@ enum Transaction {
   RENT
 }
 
-type Agent {
+type Agent @model {
   name: String!
   email: String
   phoneNumber: String
@@ -31,18 +31,18 @@ type Agent {
   agency: Agency
 }
 
-type Agency {
+type Agency @model {
   name: String
   website: String
   logo: String
-  agents: [Agent]! @relation
+  agents: [Agent]!
   street: String
   city: String!
   postalCode: Int
   phoneNumber: String
 }
 
-type Location {
+type Location @model {
   street: String
   city: String!
   postalCode: Int
@@ -52,13 +52,11 @@ type Location {
   latitude: Float!
 }
 
-type House {
-  "Date and time property was created"
-  dateCreated: String!
+type House @model {
   "English title field that summarizes the property."
-  title: String @unique
+  title: String! @unique
   "Slovenian title field that summarizes the property."
-  naslov: String @unique
+  naslov: String! @unique
   "English description field that describes the property."
   description: String
   "Slovenian description field that describes the property."
@@ -79,17 +77,13 @@ type House {
   floorSize: Int
   bedRooms: Int
   bathRooms: Float
-  "How many individuals have viewed this property?"
-  propertyViews: Int
 }
 
-type Appartment {
-  "Date and time property was created"
-  dateCreated: String!
+type Appartment @model {
   "English title field that summarizes the property."
-  title: String @unique
+  title: String! @unique
   "Slovenian title field that summarizes the property."
-  naslov: String @unique
+  naslov: String! @unique
   "English description field that describes the property."
   description: String
   "Slovenian description field that describes the property."
@@ -110,17 +104,13 @@ type Appartment {
   floorSize: Int
   bedRooms: Int
   bathRooms: Float
-  "How many individuals have viewed this property?"
-  propertyViews: Int
 }
 
-type Plot {
-  "Date and time property was created"
-  dateCreated: String!
+type Plot @model {
   "English title field that summarizes the property."
-  title: String @unique
+  title: String! @unique
   "Slovenian title field that summarizes the property."
-  naslov: String @unique
+  naslov: String! @unique
   "English description field that describes the property."
   description: String
   "Slovenian description field that describes the property."
@@ -137,8 +127,6 @@ type Plot {
   type: PlotType!
   plotSize: Int
   locationInformation: String
-  "How many individuals have viewed this property?"
-  propertyViews: Int
 }
 
 type Query {
